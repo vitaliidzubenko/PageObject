@@ -24,13 +24,10 @@ public abstract class DriverInit {
 
     public void setDriver(String... browser) {
         String brLoc = browser.length > 0 ? browser[0] : "firefox";
-
         switch (brLoc) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();//.version("2.26").setup();
                 driver = new ChromeDriver();
-                break;
-            case "safari":
                 break;
             default:
                 WebDriverManager.firefoxdriver().setup();

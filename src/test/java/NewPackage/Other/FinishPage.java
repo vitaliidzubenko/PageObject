@@ -11,6 +11,5 @@ public class FinishPage extends DriverInit {
 
     public void waitForFinshReg() {
         getWait().until(ExpectedConditions.visibilityOf(cashier));
-
     }
 }
