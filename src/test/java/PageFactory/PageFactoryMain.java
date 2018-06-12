@@ -2,15 +2,12 @@ package PageFactory;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class PageFactoryMain {
 
@@ -38,8 +35,6 @@ public class PageFactoryMain {
     protected void BeforeTest() {
         Configuration.browser = "chrome";
         open("https://www.cryptomusu.com");
-//        PageFactory.initElements(getWebDriver(), this);
-
     }
 
     protected void goToRegisterForm() {

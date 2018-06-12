@@ -1,18 +1,13 @@
 package PageObject;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenidePageFactory;
-import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.impl.SelenideFieldDecorator;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-public class StartPagePF extends AbstractPage {
-
+public class StartPagePF {
 
     @FindBy(xpath = "//*[@class = 'section-first']//a[@title = 'Open account']")
     private WebElement openButton;

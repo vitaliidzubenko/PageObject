@@ -4,8 +4,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.assertj.core.api.SoftAssertions;
 import org.openqa.selenium.By;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;

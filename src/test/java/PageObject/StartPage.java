@@ -5,12 +5,10 @@ import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class StartPage extends AbstractPage {
-
+public class StartPage {
 
     private By openButton = By.xpath("//*[@class = 'section-first']//a[@title = 'Open account']");
     private By regForm = By.xpath("//*[@id = 'user-register-form']");
-
 
     protected void goToRegisterForm() {
         $(openButton).click();
