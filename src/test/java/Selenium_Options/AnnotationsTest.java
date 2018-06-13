@@ -19,4 +19,5 @@ public class AnnotationsTest extends DriverInit {
         getDriver().manage().deleteAllCookies();
         getDriver().close();
     }
+
 }
