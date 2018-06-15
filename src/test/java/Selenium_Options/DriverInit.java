@@ -23,7 +23,7 @@ public abstract class DriverInit {
     }
 
     public void setDriver(String... browser) {
-        String brLoc = browser.length > 0 ? browser[0] : "chrome";
+        String brLoc = browser.length > 0 ? browser[0] : "";
         switch (brLoc) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();//.version("2.26").setup();

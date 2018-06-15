@@ -3,12 +3,7 @@ package PO_Selenium;
 import Selenium_Options.AnnotationsTest;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.testng.Reporter;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.uncommons.reportng.HTMLReporter;
-import org.uncommons.reportng.JUnitXMLReporter;
-//@Listeners({HTMLReporter.class, JUnitXMLReporter.class})
 
 public class TestClass extends AnnotationsTest {
 
@@ -31,7 +26,5 @@ public class TestClass extends AnnotationsTest {
         log.info("Waiting for successful registration");
         finishPage.waitForFinish();
         log.info("End of Test/ Closing Browser");
-
     }
 }
-
