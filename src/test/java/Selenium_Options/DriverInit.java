@@ -22,12 +22,17 @@ public abstract class DriverInit {
         return wait;
     }
 
+    //TODO Set Stable version of browser
     public void setDriver(String... browser) {
         String brLoc = browser.length > 0 ? browser[0] : "chrome";
         switch (brLoc) {
             case "chrome":
-                WebDriverManager.chromedriver().setup();//.version("2.26").setup();
+                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
+                break;
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
                 break;
             default:
                 WebDriverManager.firefoxdriver().setup();
@@ -35,5 +40,4 @@ public abstract class DriverInit {
         }
         wait = new WebDriverWait(driver, 10);
     }
-
 }
