@@ -35,5 +35,6 @@ public class AnnotationsTest extends DriverInit {
         System.out.println("******************************====FINISH_OF_TEST===*******************************");
         System.out.println("==================================================================================");
         log.error("Finish of Test/ Closing Browser");
+        s.assertAll();
     }
 }

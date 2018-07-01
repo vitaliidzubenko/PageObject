@@ -5,14 +5,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 
 public class MainPageRia extends DriverInit {
     private final Logger log = LogManager.getLogger(MainPageRia.class);
-    private final By enterCabinet = By.xpath("//span[@class = 'tl']");
-    private final By brandSearchBlock = By.xpath("//*[@id= 'brandTooltipBrandAutocomplete-brand']");
-    private final By modelSearchBlock = By.xpath("//*[@id= 'brandTooltipBrandAutocompleteInput-model']");
-    private final By regionSearchBlock = By.xpath("///*[@id = 'regionAutocompleteAutocompleteInput-1']");
+    private final By enterCabinet = By.xpath("//div[@class = 'app-head-bar']//*[text() = 'Вход в кабинет']");
+    private final By brandSearchBlock = By.xpath("//div[@id= 'brandTooltipBrandAutocomplete-brand']/label");
+    private final By modelSearchBlock = By.xpath("//*[@id='brandTooltipBrandAutocomplete-model']/label");
+    private final By regionSearchBlock = By.xpath("//*[@id= 'regionAutocompleteAutocomplete-1']/label");
     private final By yearFromSearchBlock = By.xpath("//*[@id = 'yearFrom']");
     private final By yearToSearchBlock = By.xpath("//*[@id = 'yearTo']");
     private final By submitButtonSearchBlock = By.xpath("//*[@class= 'button']");
@@ -20,6 +19,11 @@ public class MainPageRia extends DriverInit {
     private final By newCarsHeader = By.xpath("//div[@class = 'container-header']//a[text() = 'Новые авто']");
     private final By specialVehicleHome = By.xpath("//*[@class = 'i-tt-spectex']");
     private final By buldozerIconHome = By.xpath("//*[@title= 'Бульдозер']");
+    private final By skodaList = By.xpath("//*[@class= 'unstyle scrollbar autocomplete-select']//a[text() = 'Skoda']");
+    private final By modelList = By.xpath("//*[@class= 'unstyle scrollbar autocomplete-select']//a[text() = 'Octavia A5']");
+    private final By regionList = By.xpath("//*[@id= 'regionAutocompleteAutocomplete-1']/ul/li[3]/a");
+    private final By yearFromList = By.xpath("//*[@id= 'yearFrom']/option[10]");
+    private final By yearToList = By.xpath("//*[@id= 'yearTo']/option[5]");
 
     public MainPageRia clickCabinet() {
         log.error("clickCabinet");
@@ -28,39 +32,34 @@ public class MainPageRia extends DriverInit {
         return this;
     }
 
-    public MainPageRia fillBrand(String brand) {
+    public MainPageRia fillBrand() {
         log.error("fillBrand");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(brandSearchBlock));
-        Select dropBrand = new Select(getDriver().findElement(brandSearchBlock));
-        dropBrand.selectByVisibleText(brand);
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(brandSearchBlock)).click();
+        getDriver().findElement(skodaList).click();
         return this;
     }
 
-    public MainPageRia fillModel(String model) {
+    public MainPageRia fillModel() {
         log.error("fillModel");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(modelSearchBlock));
-        Select dropModel = new Select(getDriver().findElement(modelSearchBlock));
-        dropModel.selectByValue(model);
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(modelSearchBlock)).click();
+        getDriver().findElement(modelList).click();
         return this;
     }
 
-    public MainPageRia fillRegion(String region) {
+    public MainPageRia fillRegion() {
         log.error("fillRegion");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(regionSearchBlock));
-        Select dropRegion = new Select(getDriver().findElement(regionSearchBlock));
-        dropRegion.selectByValue(region);
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(regionSearchBlock)).click();
+        getDriver().findElement(regionList).click();
         return this;
     }
 
-    public MainPageRia fillYear(String yearF, String yearT) {
+    public MainPageRia fillYear() {
         log.error("fillYear");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(yearFromSearchBlock));
-        Select dropYearFrom = new Select(getDriver().findElement(yearFromSearchBlock));
-        dropYearFrom.selectByValue(String.valueOf(yearF));
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(yearFromSearchBlock)).click();
+        getDriver().findElement(yearFromList).click();
 
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(yearToSearchBlock));
-        Select dropYearTo = new Select(getDriver().findElement(yearToSearchBlock));
-        dropYearTo.selectByValue(String.valueOf(yearT));
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(yearToSearchBlock)).click();
+        getDriver().findElement(yearToList).click();
         return this;
     }
 

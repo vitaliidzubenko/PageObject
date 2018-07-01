@@ -4,8 +4,6 @@ import Selenium_Options.AnnotationsTest;
 import org.testng.annotations.Test;
 
 public class TestClassForRia extends AnnotationsTest {
-    //TODO delete objects of pages (below)
-    //TODO add asserts for all tests
     private MainPageRia mainPageRia = new MainPageRia();
     private DetailResPageRia detailResPageRia = new DetailResPageRia();
     private ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
@@ -13,27 +11,28 @@ public class TestClassForRia extends AnnotationsTest {
 
     @Test(priority = 1)
     public void firstTestCase() {
-        LoginPageRia loginPageRia = new LoginPageRia();
         mainPageRia.clickCabinet();
+        LoginPageRia loginPageRia = new LoginPageRia();
         loginPageRia
                 .clickRegister()
                 .clickEnterGoogle()
                 .fillPopUpGoogle("test.for.ria@gmail.com", "test.for.ria123");
+        loginPageRia.checkForEnabledGoogle();
     }
 
-    @Test(priority = 2) //TODO Error = Element should have been "select" but was "div"
+    @Test(priority = 2)
     public void secondTestCase() {
         mainPageRia
-                .fillBrand("Skoda")
-                .fillModel("Octavia A5")
-                .fillRegion("Винница")
-                .fillYear("2010", "2015")
+                .fillBrand()
+                .fillModel()
+                .fillRegion()
+                .fillYear()
                 .clickSubmitButton();
         resPageRia.resultSearchHomePage();
         detailResPageRia.detailedInfoElement();
     }
 
-    @Test(priority = 3) //TODO year 2010-2010 ?? (2010-2015)
+    @Test(priority = 3)
     public void thirdTestCase() {
         mainPageRia.clickExtendedSearch();
         extendSearchPageRia
@@ -44,9 +43,10 @@ public class TestClassForRia extends AnnotationsTest {
                 .fillFuelType()
                 .clickShowResultsButton();
         resPageRia.clickFirstElementSearch();
+        detailResPageRia.detailedInfoElement();
     }
 
-    @Test(priority = 4) //TODO
+    @Test(priority = 4)
     public void fourthTestCase() {
         mainPageRia.clickNewCarsHeader();
         extendSearchPageRia
@@ -55,16 +55,17 @@ public class TestClassForRia extends AnnotationsTest {
                 .firstGenModel()
                 .offersForModel()
                 .modelInfo();
+        detailResPageRia.proposeChevy();
     }
 
-    @Test(priority = 5) //TODO Element should have been "select" but was "input"
+    @Test(priority = 5)
     public void fifthTestCase() {
         mainPageRia
+                .fillRegion()
                 .clickSpecialVehicle()
                 .clickBuldozer();
         extendSearchPageRia
-                .fillBuldozerBrand("Caterpillar")
-                .priceBuldozer("50000", "60000");
+                .priceBuldozer("40000", "70000");
         detailResPageRia.detailsBuldozer();
     }
 

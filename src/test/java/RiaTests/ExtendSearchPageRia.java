@@ -4,8 +4,8 @@ import Selenium_Options.DriverInit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 
 public class ExtendSearchPageRia extends DriverInit {
     private final Logger log = LogManager.getLogger(ExtendSearchPageRia.class);
@@ -21,7 +21,6 @@ public class ExtendSearchPageRia extends DriverInit {
     private final By firstImageSuburban = By.xpath("//*[@class = 'photo-294x190']");
     private final By offersForElement = By.xpath("//*[@id = 'offers_count']//a");
     private final By allPageContent = By.xpath("//div[@class = 'app-content page-search']");
-    private final By buldozerBrandSearch = By.xpath("//*[@id = 'brandTooltipBrandAutocompleteInput-1']");
     private final By priceFrom = By.xpath("//*[@id = 'priceFrom']");
     private final By priceTo = By.xpath("//*[@id = 'priceTo']");
     private final By searchButtonSearch = By.xpath("//*[@class= 'button-primary']");
@@ -46,7 +45,7 @@ public class ExtendSearchPageRia extends DriverInit {
         getDriver().findElement(yearFromExtendedSearch).sendKeys(yearF);
 
         getWait().until(ExpectedConditions.visibilityOfElementLocated(yearToExtendedSearch));
-        getDriver().findElement(yearToExtendedSearch).clear();
+        getDriver().findElement(yearToExtendedSearch).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         getDriver().findElement(yearToExtendedSearch).sendKeys(yearT);
         return this;
     }
@@ -106,18 +105,10 @@ public class ExtendSearchPageRia extends DriverInit {
         return this;
     }
 
-    public ExtendSearchPageRia fillBuldozerBrand(String brandBuldozer) {
-        log.error("fillBuldozerBrand");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(buldozerBrandSearch));
-        Select dropBrandBuldozer = new Select(getDriver().findElement(buldozerBrandSearch));
-        dropBrandBuldozer.selectByVisibleText(brandBuldozer);
-        return this;
-    }
-
     public ExtendSearchPageRia priceBuldozer(String priceF, String priceT) {
         log.error("priceBuldozer");
-        getDriver().findElement(priceFrom).sendKeys(String.valueOf(priceF));
-        getDriver().findElement(priceTo).sendKeys(String.valueOf(priceT));
+        getDriver().findElement(priceFrom).sendKeys(priceF);
+        getDriver().findElement(priceTo).sendKeys(priceT);
         getDriver().findElement(searchButtonSearch).click();
         return this;
     }

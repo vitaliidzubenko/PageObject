@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -17,6 +18,8 @@ public class LoginPageRia extends DriverInit {
     private final By next = By.xpath("//*[@id = 'identifierNext']");
     private final By passwordPopUp = By.xpath("//input[@name= 'password']");
     private final By nextButtonPopUp = By.xpath("//div[@id= 'passwordNext']");
+    private final By afterLoginField = By.xpath("//div[@class = 'position-login-block']");
+
 
     public LoginPageRia clickRegister() {
         log.error("clickRegister");
@@ -53,6 +56,13 @@ public class LoginPageRia extends DriverInit {
                 getDriver().switchTo().window(parentWindow);
             }
         }
+        return this;
+    }
+
+    public LoginPageRia checkForEnabledGoogle() {
+        log.error("checkForEnabledGoogle");
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(afterLoginField));
+        Assert.assertFalse(getDriver().findElement(afterLoginField).isDisplayed());
         return this;
     }
 }

@@ -40,4 +40,5 @@ public abstract class DriverInit {
         }
         wait = new WebDriverWait(driver, 10);
     }
+
 }
