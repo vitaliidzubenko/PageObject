@@ -23,9 +23,9 @@ public class DetailResPageRia extends DriverInit {
 
     public DetailResPageRia detailsBuldozer() {
         log.error("detailsBuldozer");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(firstResultBuldozer));
+        getWait().until(ExpectedConditions.elementToBeClickable(firstResultBuldozer));
         getDriver().findElement(firstResultBuldozer).click();
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(contentPageBuldozer));
+        getWait().until(ExpectedConditions.elementToBeClickable(contentPageBuldozer));
         Assert.assertTrue(getDriver().findElement(contentPageBuldozer).isDisplayed());
         return this;
     }

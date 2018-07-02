@@ -5,9 +5,10 @@
         <listener class-name="org.uncommons.reportng.HTMLReporter"/>
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
     </listeners>
-    <test name="Test_Suite" >
+    <test name="Test" >
         <classes>
-            <class name="PO_Selenium.TestClass" />
+            <class name="RiaTests.TestClassForRia" />
         </classes>
     </test>
 </suite>
+
