@@ -38,7 +38,7 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.1/aspectjweaver-1.9.1.jar"
+                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.1/aspectjweaver-1.9.1.jar"
                     </argLine>
                 </configuration>
                 <dependencies>

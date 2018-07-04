@@ -30,11 +30,11 @@ public class AnnotationsTest extends DriverInit {
     @AfterTest
     public void closeTest() {
         getDriver().manage().deleteAllCookies();
-        getDriver().close();
+        getDriver().quit();
+        log.error("Finish of Test/ Closing Browser");
         System.out.println("==================================================================================");
         System.out.println("******************************====FINISH_OF_TEST===*******************************");
         System.out.println("==================================================================================");
-        log.error("Finish of Test/ Closing Browser");
         s.assertAll();
     }
 }
