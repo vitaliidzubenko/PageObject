@@ -2,16 +2,17 @@ package RiaTests;
 
 import Selenium_Options.AnnotationsTest;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 public class TestClassForRia extends AnnotationsTest {
     private MainPageRia mainPageRia = new MainPageRia();
     private DetailResPageRia detailResPageRia = new DetailResPageRia();
     private ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
-    private ResPageRia resPageRia = new ResPageRia();//TODO allure/ parameters in tests
+    private ResPageRia resPageRia = new ResPageRia();
     private CTOpage ctoPage = new CTOpage();
     private QuestionsPage questionsPage = new QuestionsPage();
-    private OtherRiaSites otherRiaSites = new OtherRiaSites();
+    private OtherRiaSites otherRiaSites = new OtherRiaSites();//TODO allure reports to index.html
 
     @Test(priority = 1)
     public void firstTestCase() {
