@@ -11,7 +11,7 @@ public class TestClassForRia extends AnnotationsTest {
     private ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
     private ResPageRia resPageRia = new ResPageRia();
     private CTOpage ctoPage = new CTOpage();
-    private QuestionsPage questionsPage = new QuestionsPage();
+    private QuestionsPage questionsPage = new QuestionsPage();//TODO objects of pages in tests
     private OtherRiaSites otherRiaSites = new OtherRiaSites();//TODO allure reports to index.html
 
     @Test(priority = 1)
