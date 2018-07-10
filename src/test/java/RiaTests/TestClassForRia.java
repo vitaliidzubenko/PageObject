@@ -2,7 +2,6 @@ package RiaTests;
 
 import Selenium_Options.AnnotationsTest;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 public class TestClassForRia extends AnnotationsTest {
@@ -14,7 +13,7 @@ public class TestClassForRia extends AnnotationsTest {
     private QuestionsPage questionsPage = new QuestionsPage();//TODO objects of pages in tests
     private OtherRiaSites otherRiaSites = new OtherRiaSites();//TODO allure reports to index.html
 
-    @Test(priority = 1)
+    @Test(priority = 1) //@Optional String email_param, String pass_param
     public void firstTestCase() {
         mainPageRia.clickCabinet();
         LoginPageRia loginPageRia = new LoginPageRia();
@@ -22,6 +21,7 @@ public class TestClassForRia extends AnnotationsTest {
                 .clickRegister()
                 .clickEnterGoogle()
                 .fillPopUpGoogle("test.for.ria@gmail.com", "test.for.ria123");
+                //.fillPopUpGoogle("email_param", "pass_param");
         loginPageRia.checkForEnabledGoogle();
         Assert.assertFalse((getDriver().findElement(loginPageRia.getAfterLoginField()).isDisplayed()), "***Verification Failed!***");
     }
