@@ -1,4 +1,4 @@
-# REQUIRED FOR SERVICE-TEMPLATE:
+ # REQUIRED FOR SERVICE-TEMPLATE:
 
 # Githash endpoint
 
@@ -37,8 +37,6 @@ Thumbs.db
 .gradle/
 
 build/
-
-target/
 
 dependency-reduced-pom.xml
 
