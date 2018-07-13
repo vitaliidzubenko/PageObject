@@ -16,8 +16,10 @@ public class AnnotationsTest extends DriverInit {
     protected static SoftAssertions s = new SoftAssertions();
     protected static String MainUrl = "https://auto.ria.com/";
 
+    @Parameters("BaseUrl")
     @BeforeTest
-    public void setUp() {
+    public void setUp(String BaseUrl) {
+
         getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         getDriver().manage().window().maximize();
         getDriver().manage().deleteAllCookies();

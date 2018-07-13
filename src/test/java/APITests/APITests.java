@@ -22,14 +22,19 @@ public class APITests extends APIanotation {
         System.out.println("Response code is " + code);
         Assert.assertEquals(code, 200);
     }
+    //Mapa, OOP in mapa/ assert with comments/ reg in dev api ria/ docs api ria/ testng files 2-3x for runing testscases
 
     @Test(priority = 2)//Sending params in JSON and checking status code
     public void getBodyTest() {
+
+//        String ddd= "sdergtergherf.dsergergergf";
+//        ddd = ddd.replaceAll("^.*\\..*$","!");
+
         Response response =
                 given().
-                        body("{\"category_id\":\"1\"," +
-                                " \"marka_id\":\"6\"," +
-                                " \"model_id\":\"51\"}").
+                        body("{'category_id':'1'," +
+                                " 'marka_id':'6'," +
+                                " 'model_id':'51'}").
                         when().
                         contentType(ContentType.JSON).
                         post();
@@ -89,7 +94,7 @@ public class APITests extends APIanotation {
     @Test(priority = 7)//Get time of response
     public void getTime() {
         get();
-        long timeInSeconds = get().timeIn(TimeUnit.SECONDS);
+        long timeInSeconds = get().timeIn(TimeUnit.MILLISECONDS);
         System.out.println(timeInSeconds);
 
     }
