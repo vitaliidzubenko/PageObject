@@ -8,15 +8,15 @@
     </listeners>
 
     <test name="BaseUrlTest">
-        <parameter name="BaseUrl" value="https://auto.ria.com/"> </parameter>
+        <parameter name="BaseUrl" value="https://auto.ria.com/"/>
         <classes>
             <class name="Selenium_Options.AnnotationsTest"/>
         </classes>
     </test>
 
     <test name="Login">
-        <parameter name="email_param" value="test.for.ria@gmail.com"> </parameter>
-        <parameter name="pass_param" value="test.for.ria123"> </parameter>
+        <parameter name="email_param" value="test.for.ria@gmail.com"/>
+        <parameter name="pass_param" value="test.for.ria123"/>
         <classes>
             <class name="RiaTests.TestClassForRia"/>
         </classes>

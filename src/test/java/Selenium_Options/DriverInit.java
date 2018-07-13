@@ -11,9 +11,9 @@ public abstract class DriverInit {
     private static WebDriver driver;
     private static WebDriverWait wait;
 
-    public WebDriver getDriver(String... browser) {
+    public WebDriver getDriver() {
         if (driver == null) {
-            setDriver(browser);
+            setDriver();
         }
         return driver;
     }
