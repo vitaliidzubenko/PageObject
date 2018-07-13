@@ -65,13 +65,14 @@ public class APITests extends APIanotation {
         car.put("category_id", "1");
         car.put("marka_id", "6");
         car.put("model_id", "51");
-
+        Response response =
         given()
                 .contentType("application/json")
                 .body(car)
-                .when().post("/car/used/").then()
-                .body("empty", equalTo(false))
-                .statusCode(200);
+                .when()
+                .redirects().follow(true)
+                .post("/car/used/");
+        System.out.println("Returned full html " + response.getStatusCode());
     }
 
     @Test(priority = 6)//Viewing all content in response
