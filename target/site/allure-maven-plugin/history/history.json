@@ -1,0 +1,22 @@
+{
+  "cb7b27b893ebcb3b01b25b44381639ce" : {
+    "statistic" : {
+      "failed" : 1,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "items" : [ {
+      "uid" : "72aa9da0e557db69",
+      "status" : "failed",
+      "statusDetails" : "***Verification Failed!*** expected [false] but found [true]",
+      "time" : {
+        "start" : 1531657624933,
+        "stop" : 1531657640869,
+        "duration" : 15936
+      }
+    } ]
+  }
+}

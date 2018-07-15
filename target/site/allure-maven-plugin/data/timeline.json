@@ -1,0 +1,72 @@
+{
+  "statistic" : {
+    "failed" : 1,
+    "broken" : 0,
+    "skipped" : 0,
+    "passed" : 0,
+    "unknown" : 0,
+    "total" : 1
+  },
+  "time" : {
+    "minDuration" : 15936,
+    "maxDuration" : 15936,
+    "sumDuration" : 15936,
+    "start" : 1531657624933,
+    "stop" : 1531657640869,
+    "duration" : 15936
+  },
+  "children" : [ {
+    "uid" : "f252c1cac3422e0c",
+    "name" : "DESKTOP-TT2TUFE",
+    "time" : {
+      "minDuration" : 15936,
+      "maxDuration" : 15936,
+      "sumDuration" : 15936,
+      "start" : 1531657624933,
+      "stop" : 1531657640869,
+      "duration" : 15936
+    },
+    "statistic" : {
+      "failed" : 1,
+      "broken" : 0,
+      "skipped" : 0,
+      "passed" : 0,
+      "unknown" : 0,
+      "total" : 1
+    },
+    "type" : "TestGroupNode",
+    "children" : [ {
+      "uid" : "f4a460ecd187ef9c",
+      "name" : "9880@DESKTOP-TT2TUFE.main(1)",
+      "time" : {
+        "minDuration" : 15936,
+        "maxDuration" : 15936,
+        "sumDuration" : 15936,
+        "start" : 1531657624933,
+        "stop" : 1531657640869,
+        "duration" : 15936
+      },
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 1
+      },
+      "type" : "TestGroupNode",
+      "children" : [ {
+        "uid" : "72aa9da0e557db69",
+        "name" : "firstTestCase",
+        "time" : {
+          "start" : 1531657624933,
+          "stop" : 1531657640869,
+          "duration" : 15936
+        },
+        "status" : "failed",
+        "flaky" : false,
+        "type" : "TestCaseNode"
+      } ]
+    } ]
+  } ]
+}

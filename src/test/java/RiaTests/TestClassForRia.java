@@ -1,8 +1,8 @@
 package RiaTests;
 
 import Selenium_Options.AnnotationsTest;
+import io.qameta.allure.Description;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 public class TestClassForRia extends AnnotationsTest {
@@ -12,8 +12,9 @@ public class TestClassForRia extends AnnotationsTest {
     private ResPageRia resPageRia = new ResPageRia();
     private CTOpage ctoPage = new CTOpage();
     private QuestionsPage questionsPage = new QuestionsPage();//TODO objects of pages in tests
-    private OtherRiaSites otherRiaSites = new OtherRiaSites();//TODO allure reports to index.html
+    private OtherRiaSites otherRiaSites = new OtherRiaSites();
 
+    @Description("This test is checking the login with Google account")
     @Test(priority = 1)
     public void firstTestCase() {
         mainPageRia.clickCabinet();
@@ -26,6 +27,7 @@ public class TestClassForRia extends AnnotationsTest {
         Assert.assertFalse((getDriver().findElement(loginPageRia.getAfterLoginField()).isDisplayed()), "***Verification Failed!***");
     }
 
+    @Description("This test is checking the search results from the Home Page using parameters")
     @Test(priority = 2)
     public void secondTestCase() {
         ResPageRia resPageRia = mainPageRia
@@ -39,6 +41,7 @@ public class TestClassForRia extends AnnotationsTest {
         Assert.assertTrue((getDriver().findElement(detailResPageRia.getContentDisplayed()).isDisplayed()), "***Verification Failed!***");
     }
 
+    @Description("This test is checking search results by extended search form using parameters")
     @Test(priority = 3)
     public void thirdTestCase() {
         mainPageRia.clickExtendedSearch();
@@ -54,6 +57,7 @@ public class TestClassForRia extends AnnotationsTest {
         Assert.assertTrue((getDriver().findElement(detailResPageRia.getContentDisplayed()).isDisplayed()), "***Verification Failed!***");
     }
 
+    @Description("This test is checking new auto results/ Chevrolet Suburban")
     @Test(priority = 4)
     public void fourthTestCase() {
         mainPageRia.clickNewCarsHeader();
@@ -67,6 +71,7 @@ public class TestClassForRia extends AnnotationsTest {
         Assert.assertTrue((getDriver().findElement(detailResPageRia.getProposeContent()).isDisplayed()), "***Verification Failed!***");
     }
 
+    @Description("This test is checking special vehicle results with parameters")
     @Test(priority = 5)
     public void fifthTestCase() {
         mainPageRia
@@ -79,6 +84,7 @@ public class TestClassForRia extends AnnotationsTest {
         Assert.assertTrue((getDriver().findElement(detailResPageRia.getContentDisplayed()).isDisplayed()), "***Verification Failed!***");
     }
 
+    @Description("This test is checking service station page, using Home Page headers menu")
     @Test(priority = 6)
     public void sixthTestCase() {
         mainPageRia.hoverClickCars();
@@ -89,6 +95,7 @@ public class TestClassForRia extends AnnotationsTest {
         Assert.assertTrue((getDriver().findElement(ctoPage.getPhoneShown()).isDisplayed()), "***Verification Failed!***");
     }
 
+    @Description("This test is checking help page, entering text for answer")
     @Test(priority = 7)
     public void seventhTestCase() {
         mainPageRia
@@ -100,6 +107,7 @@ public class TestClassForRia extends AnnotationsTest {
         Assert.assertTrue((getDriver().findElement(questionsPage.getAnswerContent()).isDisplayed()), "***Verification Failed!***");
     }
 
+    @Description("This test is checking all links of Ria services")
     @Test(priority = 8)
     public void eighthTestCase() {
         mainPageRia.clickRiaCom();
@@ -116,6 +124,7 @@ public class TestClassForRia extends AnnotationsTest {
         Assert.assertTrue((getDriver().findElement(otherRiaSites.getContentHeaderLinks()).isDisplayed()), "***Verification Failed!***");
     }
 
+    @Description("This test is checking car from abroad search results")
     @Test(priority = 9)
     public void ninethTestCase() throws InterruptedException {
         mainPageRia.clickAbroadCar();
@@ -129,6 +138,7 @@ public class TestClassForRia extends AnnotationsTest {
         Assert.assertTrue((getDriver().findElement(detailResPageRia.getContentDisplayed()).isDisplayed()), "***Verification Failed!***");
     }
 
+    @Description("This test is checking detailed search from previously entered parameter")
     @Test(priority = 10)
     public void tenthTestCase() {
         mainPageRia.clickTruck();
