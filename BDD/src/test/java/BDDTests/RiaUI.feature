@@ -8,15 +8,14 @@ Feature: : Testing UI AutoRia
     And Enter email and password
       | test.for.ria@gmail.com |
       | test.for.ria123        |
-    Then Click Submit
-    And See bug for Test №1
+    Then See bug for First Test
 
   Scenario: №2 Default search by Search Field at Home Page
     Given Get the Home Page
     When At Search Form enter parameters
-    Then Click Search button
+    Then Click Search button second test
     When Click at fifth result on page
-    Then See result for Test №2
+    Then See result for Second Test
 
   Scenario: №3 Extended search from Home Page
     Given Get the Home Page
@@ -24,16 +23,16 @@ Feature: : Testing UI AutoRia
     And At Advanced Search Form enter detailed parameters
       | 2010 |
       | 2015 |
-    Then Click Search button
+    Then Click Search button third test
     When Click at First result on page
-    Then See result for Test №3
+    Then See result for Third Test
 
   Scenario: №4 New car Search
     Given Get the Home Page
     When Click at header’s link New cars
     Then Choose Chevrolet brand at Catalog of new cars
     And Choose Suburban model at Lineup block
-    When Click at the image 2014 - 2018
+    When Click at the image
     Then Click at Offers, where to buy
     And See result for Test №4
 

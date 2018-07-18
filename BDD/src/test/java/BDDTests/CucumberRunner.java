@@ -9,6 +9,4 @@ import org.testng.annotations.Optional;
 @CucumberOptions(features = "src/test/java/BDDTests", glue = {"BDDTests"})
 public class CucumberRunner {
 
-
-
 }

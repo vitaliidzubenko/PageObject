@@ -1,106 +1,118 @@
 package BDDTests;
 
-import RiaTests.LoginPageRia;
-import RiaTests.MainPageRia;
+import RiaTests.*;
 import Selenium_Options.AnnotationsTest;
+import Selenium_Options.DriverInit;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.testng.Assert;
 
 import java.util.List;
 import java.util.Map;
 
-public class CucumberTests extends AnnotationsTest {
+public class CucumberTests extends DriverInit {
     private MainPageRia mainPageRia = new MainPageRia();
-    LoginPageRia loginPageRia = new LoginPageRia();
+    private LoginPageRia loginPageRia = new LoginPageRia();
+    private DetailResPageRia detailResPageRia = new DetailResPageRia();
+    private ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
+    private ResPageRia resPageRia = new ResPageRia();
+    private CTOpage ctoPage = new CTOpage();
+    private QuestionsPage questionsPage = new QuestionsPage();
+    private OtherRiaSites otherRiaSites = new OtherRiaSites();
 
-    //    @And("^Enter email and password$")
-//    public void enter_email_and_password(DataTable parameters) throws Throwable {
-//        List<String> parametersAsList = parameters.asList(String.class);
-//        //driver.find(locator).sendkeys(parametersAsList.get(0))
-//        //driver.find(locator).sendkeys(parametersAsList.get(1))
-//
-//    }
     @Given("^Get the Home Page$")
     public void get_the_Home_Page() {
-
+        //It works by default
     }
 
     @When("^Click Enter cabinet$")
     public void click_Enter_cabinet() {
-
+        mainPageRia.clickCabinet();
     }
 
     @Then("^Click Register$")
     public void click_Register() {
-
+        loginPageRia.clickRegister();
     }
 
     @When("^Click Enter with Google$")
     public void click_Enter_with_Google() {
-
+        loginPageRia.clickEnterGoogle();
     }
 
     @When("^Enter email and password$")
-    public void enter_email_and_password(DataTable arg1) {
-
+    public void enter_email_and_password(DataTable parameters) {
+        List<String> parametersAsList = parameters.asList(String.class);
+        loginPageRia.fillPopUpGoogle(parametersAsList.get(0), parametersAsList.get(1));
     }
 
-    @Then("^Click Submit$")
-    public void click_Submit() {
-
-    }
-
-    @Then("^See bug for Test №(\\d+)$")
-    public void see_bug_for_Test(int arg1) {
-
+    @Then("^See bug for First Test$")
+    public void see_bug_for_Test() {
+        loginPageRia.checkForEnabledGoogle();
+        Assert.assertFalse((getDriver().findElement(loginPageRia.getAfterLoginField()).isDisplayed()), "***Verification Failed!***");
     }
 
     @When("^At Search Form enter parameters$")
     public void at_Search_Form_enter_parameters() {
-
+        mainPageRia.fillBrand()
+                .fillModel()
+                .fillRegion()
+                .fillYear();
     }
 
-    @Then("^Click Search button$")
+    @Then("^Click Search button second test$")
     public void click_Search() {
-
+        mainPageRia.clickSubmitButton();
     }
 
     @When("^Click at fifth result on page$")
     public void click_at_fifth_result_on_page() {
-
+        resPageRia.resultSearchHomePage();
     }
 
-    @Then("^See result for Test №(\\d+)$")
-    public void see_result_for_Test(int arg1) {
-
+    @Then("^See result for Second Test$")
+    public void see_result_for_Test() {
+        detailResPageRia.detailedInfoElement();
+        Assert.assertTrue((getDriver().findElement(detailResPageRia.getContentDisplayed()).isDisplayed()), "***Verification Failed!***");
     }
 
     @When("^Click Advanced Search button at Search Field$")
     public void click_Advanced_Search_button_at_Search_Field() {
-
+        mainPageRia.clickExtendedSearch();
     }
 
     @When("^At Advanced Search Form enter detailed parameters$")
-    public void at_Advanced_Search_Form_enter_detailed_parameters(DataTable arg1) {
-
+    public void at_Advanced_Search_Form_enter_detailed_parameters(DataTable parameters) {
+        extendSearchPageRia.fillBodyType()
+                .fillBrand();
+        List<String> parametersAsList = parameters.asList(String.class);
+        extendSearchPageRia.fillYear(parametersAsList.get(0), parametersAsList.get(1));
+        extendSearchPageRia.fillregion()
+                .fillFuelType();
     }
 
-    @Then("^Click Search button$")
+    @Then("^Click Search button third test$")
     public void click_Search_butt() {
-
+        extendSearchPageRia.clickShowResultsButton();
     }
 
     @When("^Click at First result on page$")
     public void click_at_First_result_on_page() {
+        resPageRia.clickFirstElementSearch();
 
+    }
+
+    @Then("^See result for Third Test$")
+    public void see_result() {
+        detailResPageRia.detailedInfoElement();
+        Assert.assertTrue((getDriver().findElement(detailResPageRia.getContentDisplayed()).isDisplayed()), "***Verification Failed!***");
     }
 
     @When("^Click at header’s link New cars$")
     public void click_at_header_s_link_New_cars() {
-
     }
 
     @Then("^Choose Chevrolet brand at Catalog of new cars$")
@@ -144,7 +156,7 @@ public class CucumberTests extends AnnotationsTest {
     }
 
     @When("^Click Search button$")
-    public void click_Search_b()  {
+    public void click_Search_b() {
 
     }
 
@@ -254,7 +266,7 @@ public class CucumberTests extends AnnotationsTest {
     }
 
     @Then("^Scroll down to see the block Cars from Europe$")
-    public void scroll_down_to_see_the_block_Cars_from_Europe()  {
+    public void scroll_down_to_see_the_block_Cars_from_Europe() {
 
     }
 
