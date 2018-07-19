@@ -20,7 +20,7 @@ Feature: : Testing UI AutoRia
   Scenario: №3 Extended search from Home Page
     Given Get the Home Page
     When Click Advanced Search button at Search Field
-    And At Advanced Search Form enter detailed parameters
+    And At Advanced Search Form years of vehicle
       | 2010 |
       | 2015 |
     Then Click Search button third test
@@ -40,7 +40,7 @@ Feature: : Testing UI AutoRia
     When Search Form enter parameter
     Then Click on Special equipment at types of vehicles block
     And Choose Bulldozer at drop down list
-    And Enter parameters in search block and submit it
+    And Enter parameters of price in search block and submit it
       | 40000 |
       | 70000 |
     When Click at the first element at the list
@@ -48,8 +48,7 @@ Feature: : Testing UI AutoRia
 
   Scenario: №6 Searching Service station from Home Page header’s menu
     When Hover and click the link All for cars
-    Then Enter parameters at search field and submit it
-      | Vinnitsa |
+    Then Enter parameter at search field and submit it
     When Click on tick Official at options block and submit it
     And Click on Show the phone of first element at the list
     Then Verify the phone is shown
@@ -75,9 +74,6 @@ Feature: : Testing UI AutoRia
     When Scroll down to click the Car from abroad
     Then Scroll down to Click at link Cars from Lithuania
     When At the left filters panel enter parameters and submit it
-      | Passenger car |
-      | BMW           |
-      | X5M           |
     Then Click at one of filtered results
     And Verify result for Nineth Test
 
@@ -85,7 +81,4 @@ Feature: : Testing UI AutoRia
     When Click at Tractor car at types of vehicle block
     And Choose a Tank type from drop down list
     Then Enter parameters at Search block and submit it
-      | MAN  |
-      | 2015 |
-      | 2018 |
     And Check for results for Tenth Test

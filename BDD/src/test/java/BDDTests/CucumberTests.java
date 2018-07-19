@@ -1,7 +1,6 @@
 package BDDTests;
 
 import RiaTests.*;
-import Selenium_Options.AnnotationsTest;
 import Selenium_Options.DriverInit;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
@@ -11,7 +10,6 @@ import cucumber.api.java.en.When;
 import org.testng.Assert;
 
 import java.util.List;
-import java.util.Map;
 
 public class CucumberTests extends DriverInit {
     private MainPageRia mainPageRia = new MainPageRia();
@@ -90,7 +88,7 @@ public class CucumberTests extends DriverInit {
         mainPageRia.clickExtendedSearch();
     }
 
-    @And("^At Advanced Search Form enter detailed parameters$")
+    @And("^At Advanced Search Form years of vehicle$")
     public void at_Advanced_Search_Form_enter_detailed_parameters(DataTable parameters) {
         extendSearchPageRia.fillBodyType()
                 .fillBrand();
@@ -167,7 +165,7 @@ public class CucumberTests extends DriverInit {
         mainPageRia.clickBuldozer();
     }
 
-    @And("^Enter parameters in search block and submit it$")
+    @And("^Enter parameters of price in search block and submit it$")
     public void enter_parameters_in_search_block(DataTable parameters) {
         List<String> parametersAsList = parameters.asList(String.class);
         extendSearchPageRia.priceBuldozer(parametersAsList.get(0), parametersAsList.get(1));
@@ -190,7 +188,7 @@ public class CucumberTests extends DriverInit {
         mainPageRia.hoverClickCars();
     }
 
-    @Then("^Enter parameters at search field and submit it$")
+    @Then("^Enter parameter at search field and submit it$")
     public void enter_parameters_at_search_field() {
         ctoPage.chooseCity();
     }

@@ -121,7 +121,7 @@ public class TestClassForRia extends AnnotationsTest {
         detailResPageRia
                 .clickLithuania()
                 .clickVehicleType()
-                .clickVehicleType()
+                //.clickVehicleType()//TODO
                 .clickBrandType()
                 .clickModelOfCar()
                 .clickFilteredCar();
