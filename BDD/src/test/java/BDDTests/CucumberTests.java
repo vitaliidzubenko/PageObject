@@ -45,7 +45,7 @@ public class CucumberTests extends DriverInit {
         loginPageRia.clickEnterGoogle();
     }
 
-    @When("^Enter email and password$")
+    @And("^Enter email and password$")
     public void enter_email_and_password(DataTable parameters) {
         List<String> parametersAsList = parameters.asList(String.class);
         loginPageRia.fillPopUpGoogle(parametersAsList.get(0), parametersAsList.get(1));
@@ -90,7 +90,7 @@ public class CucumberTests extends DriverInit {
         mainPageRia.clickExtendedSearch();
     }
 
-    @When("^At Advanced Search Form enter detailed parameters$")
+    @And("^At Advanced Search Form enter detailed parameters$")
     public void at_Advanced_Search_Form_enter_detailed_parameters(DataTable parameters) {
         extendSearchPageRia.fillBodyType()
                 .fillBrand();
@@ -127,7 +127,7 @@ public class CucumberTests extends DriverInit {
     public void choose_Chevrolet_brand_at_Catalog_of_new_cars() {
     }
 
-    @Then("^Choose Suburban model at Lineup block$")
+    @And("^Choose Suburban model at Lineup block$")
     public void choose_Suburban_model_at_Lineup_block() {
 
     }
@@ -142,7 +142,7 @@ public class CucumberTests extends DriverInit {
 
     }
 
-    @Then("^See result for Fourth Test$")
+    @And("^See result for Fourth Test$")
     public void click_Search_btt() {
     }
 
@@ -158,12 +158,12 @@ public class CucumberTests extends DriverInit {
 
     }
 
-    @Then("^Choose Bulldozer at drop down list$")
+    @And("^Choose Bulldozer at drop down list$")
     public void choose_Bulldozer_at_drop_down_list() {
 
     }
 
-    @Then("^Enter parameters in search block$")
+    @And("^Enter parameters in search block$")
     public void enter_parameters_in_search_block(DataTable arg1) {
 
     }
@@ -188,7 +188,7 @@ public class CucumberTests extends DriverInit {
 
     }
 
-    @When("^Click at drop down list at link Service station catalog$")
+    @And("^Click at drop down list at link Service station catalog$")
     public void click_at_drop_down_list_at_link_Service_station_catalog() {
 
     }
@@ -213,7 +213,7 @@ public class CucumberTests extends DriverInit {
 
     }
 
-    @When("^Click on Show the phone of first element at the list$")
+    @And("^Click on Show the phone of first element at the list$")
     public void click_on_Show_the_phone_of_first_element_at_the_list() {
 
     }
@@ -230,7 +230,7 @@ public class CucumberTests extends DriverInit {
 
     }
 
-    @When("^Click at link Any questions\\?$")
+    @And("^Click at link Any questions\\?$")
     public void click_at_link_Any_questions() {
 
     }
@@ -297,6 +297,11 @@ public class CucumberTests extends DriverInit {
 
     }
 
+    @And("^Get back to Home Page$")
+    public void get_back_to_Ho_Page() {
+
+    }
+
     @When("^Click at link Auto parts at headers menu$")
     public void click_at_link_Auto_parts_at_headers_menu() {
 
@@ -314,7 +319,7 @@ public class CucumberTests extends DriverInit {
 
     }
 
-    @When("^Click at link Car from abroad$")
+    @And("^Click at link Car from abroad$")
     public void click_at_link_Car_from_abroad() {
 
     }
@@ -324,7 +329,7 @@ public class CucumberTests extends DriverInit {
 
     }
 
-    @Then("^Click at link Cars from Lithuania$")
+    @And("^Click at link Cars from Lithuania$")
     public void click_at_link_Cars_from_Lithuania() {
 
     }
@@ -351,7 +356,7 @@ public class CucumberTests extends DriverInit {
 
     }
 
-    @When("^Choose a Tank type from drop down list$")
+    @And("^Choose a Tank type from drop down list$")
     public void choose_a_Tank_type_from_drop_down_list() {
 
     }
