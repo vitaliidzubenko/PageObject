@@ -34,7 +34,7 @@ Feature: : Testing UI AutoRia
     And Choose Suburban model at Lineup block
     When Click at the image
     Then Click at Offers, where to buy
-    And See result for Test №4
+    And See result for Fourth Test
 
   Scenario: №5 Searching Bulldozer with search adjustment
     When Search Form enter parameter
@@ -43,41 +43,41 @@ Feature: : Testing UI AutoRia
     And Enter parameters in search block
       | 40000 |
       | 70000 |
-    When Click Search button
+    When Click Search button fifth test
     Then Click at the first element at the list
-    And See result for Test №5
+    And See result for Fifth Test
 
   Scenario: №6 Searching Service station from Home Page header’s menu
     When Hover the link All for cars
     And Click at drop down list at link Service station catalog
-    Then Enter parameters at search field:
+    Then Enter parameters at search field
       | Vinnitsa |
-    And Click Search button
+    And Click Search button sixth test
     When Click on tick Official at options block
-    And Click Search button
+    And Click Submit button
     And Click on Show the phone of first element at the list
     Then Copy the phone to clipboard
 
   Scenario: №7 Asking questions from footer menu Any questions?
     When Scroll down the page to the end
     And Click at link Any questions?
-    Then Enter How to register at input search filed
-    And Click Search button
+    Then Enter How to register at input search field
+    And Click Search button seventh test
     When Click at second link of the list
-    Then See result for Test №7
+    Then See result for Seventh Test
 
   Scenario: №8 Checking other sites of Ria company, using headers menu
     When Click at link Ria.com at headers menu
-    Then Check the address of URL, copy it
+    Then Check the address of URL Ria, copy it
     And Get back to the Home Page
     When Click at link Realty at headers menu
-    Then Check the address of URL, copy it
+    Then Check the address of URL Realty, copy it
     And Get back to Home Page
     When Click at link Car goods at headers menu
-    Then Check the address of URL, copy it
+    Then Check the address of URL Car goods, copy it
     And Get back to Home Page
     When Click at link Auto parts at headers menu
-    Then Check the address of URL, copy it
+    Then Check the address of URL Auto parts, copy it
 
   Scenario: №9 Searching Car from abroad
     When Scroll down to see the AutoRia recommends you
@@ -89,14 +89,14 @@ Feature: : Testing UI AutoRia
       | BMW           |
       | X5M           |
     Then Scroll down to see filtered results
-    And See result for Test №9
+    And See result for Nineth Test
 
   Scenario: №10 Searching car with some parameters, then changing parameters for other car type
     When Click at Tractor car at types of vehicle block
     And Choose a Tank type from drop down list
-    Then Enter parameters at Search block:
+    Then Enter parameters at Search block
       | MAN  |
       | 2015 |
       | 2018 |
-    When Click Search button
-    Then Check for results for Test №10
+    When Click Search button tenth test
+    Then Check for results for Tenth Test

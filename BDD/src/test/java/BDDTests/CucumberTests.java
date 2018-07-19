@@ -23,6 +23,8 @@ public class CucumberTests extends DriverInit {
     private QuestionsPage questionsPage = new QuestionsPage();
     private OtherRiaSites otherRiaSites = new OtherRiaSites();
 
+    //First Test
+
     @Given("^Get the Home Page$")
     public void get_the_Home_Page() {
         //It works by default
@@ -55,6 +57,8 @@ public class CucumberTests extends DriverInit {
         Assert.assertFalse((getDriver().findElement(loginPageRia.getAfterLoginField()).isDisplayed()), "***Verification Failed!***");
     }
 
+    //Second Test
+
     @When("^At Search Form enter parameters$")
     public void at_Search_Form_enter_parameters() {
         mainPageRia.fillBrand()
@@ -78,6 +82,8 @@ public class CucumberTests extends DriverInit {
         detailResPageRia.detailedInfoElement();
         Assert.assertTrue((getDriver().findElement(detailResPageRia.getContentDisplayed()).isDisplayed()), "***Verification Failed!***");
     }
+
+    //Third Test
 
     @When("^Click Advanced Search button at Search Field$")
     public void click_Advanced_Search_button_at_Search_Field() {
@@ -111,13 +117,14 @@ public class CucumberTests extends DriverInit {
         Assert.assertTrue((getDriver().findElement(detailResPageRia.getContentDisplayed()).isDisplayed()), "***Verification Failed!***");
     }
 
+    //Fourth Test
+
     @When("^Click at header’s link New cars$")
     public void click_at_header_s_link_New_cars() {
     }
 
     @Then("^Choose Chevrolet brand at Catalog of new cars$")
     public void choose_Chevrolet_brand_at_Catalog_of_new_cars() {
-
     }
 
     @Then("^Choose Suburban model at Lineup block$")
@@ -125,7 +132,7 @@ public class CucumberTests extends DriverInit {
 
     }
 
-    @When("^Click at the image (\\d+) - (\\d+)$")
+    @When("^Click at the image$")
     public void click_at_the_image(int arg1, int arg2) {
 
     }
@@ -134,6 +141,12 @@ public class CucumberTests extends DriverInit {
     public void click_at_Offers_where_to_buy() {
 
     }
+
+    @Then("^See result for Fourth Test$")
+    public void click_Search_btt() {
+    }
+
+    //Fifth Test
 
     @When("^Search Form enter parameter$")
     public void search_Form_enter_parameter() {
@@ -155,15 +168,20 @@ public class CucumberTests extends DriverInit {
 
     }
 
-    @When("^Click Search button$")
+    @When("^Click Search button fifth test$")
     public void click_Search_b() {
 
     }
 
     @Then("^Click at the first element at the list$")
     public void click_at_the_first_element_at_the_list() {
-
     }
+
+    @And("^See result for Fifth Test$")
+    public void click_Search_tt() {
+    }
+
+    //Sixth test
 
     @When("^Hover the link All for cars$")
     public void hover_the_link_All_for_cars() {
@@ -175,8 +193,13 @@ public class CucumberTests extends DriverInit {
 
     }
 
-    @Then("^Enter parameters at search field:$")
+    @Then("^Enter parameters at search field$")
     public void enter_parameters_at_search_field(DataTable arg1) {
+
+    }
+
+    @And("^Click Search button sixth test$")
+    public void click_Search_button() {
 
     }
 
@@ -185,8 +208,8 @@ public class CucumberTests extends DriverInit {
 
     }
 
-    @When("^Click Search button$")
-    public void click_Search_button() {
+    @And("^Click Submit button$")
+    public void click_S_button() {
 
     }
 
@@ -200,6 +223,8 @@ public class CucumberTests extends DriverInit {
 
     }
 
+    //Seventh test
+
     @When("^Scroll down the page to the end$")
     public void scroll_down_the_page_to_the_end() {
 
@@ -210,8 +235,13 @@ public class CucumberTests extends DriverInit {
 
     }
 
-    @Then("^Enter How to register at input search filed$")
+    @Then("^Enter How to register at input search field$")
     public void enter_How_to_register_at_input_search_filed() {
+
+    }
+
+    @And("^Click Search button seventh test$")
+    public void click_s_butt() {
 
     }
 
@@ -220,17 +250,24 @@ public class CucumberTests extends DriverInit {
 
     }
 
+    @Then("^See result for Seventh Test$")
+    public void res_page() {
+
+    }
+
+    //Eighth test
+
     @When("^Click at link Ria\\.com at headers menu$")
     public void click_at_link_Ria_com_at_headers_menu() {
 
     }
 
-    @Then("^Check the address of URL, copy it$")
+    @Then("^Check the address of URL Ria, copy it$")
     public void check_the_address_of_URL_copy_it() {
 
     }
 
-    @Then("^Get back to the Home Page$")
+    @And("^Get back to the Home Page$")
     public void get_back_to_the_Home_Page() {
 
     }
@@ -240,7 +277,12 @@ public class CucumberTests extends DriverInit {
 
     }
 
-    @Then("^Get back to Home Page$")
+    @Then("^Check the address of URL Realty, copy it$")
+    public void check_the_address_of_URL() {
+
+    }
+
+    @And("^Get back to Home Page$")
     public void get_back_to_Home_Page() {
 
     }
@@ -250,10 +292,22 @@ public class CucumberTests extends DriverInit {
 
     }
 
+    @Then("^Check the address of URL Car goods, copy it$")
+    public void check_the_address() {
+
+    }
+
     @When("^Click at link Auto parts at headers menu$")
     public void click_at_link_Auto_parts_at_headers_menu() {
 
     }
+
+    @Then("^Check the address of URL Auto parts, copy it$")
+    public void check_the_add() {
+
+    }
+
+    //Nineth test
 
     @When("^Scroll down to see the AutoRia recommends you$")
     public void scroll_down_to_see_the_Auto_ria_recommends_you() {
@@ -285,6 +339,13 @@ public class CucumberTests extends DriverInit {
 
     }
 
+    @And("^See result for Nineth Test$")
+    public void see_results() {
+
+    }
+
+    //Tenth Test
+
     @When("^Click at Tractor car at types of vehicle block$")
     public void click_at_Tractor_car_at_types_of_vehicle_block() {
 
@@ -295,15 +356,19 @@ public class CucumberTests extends DriverInit {
 
     }
 
-    @Then("^Enter parameters at Search block:$")
+    @Then("^Enter parameters at Search block$")
     public void enter_parameters_at_Search_block(DataTable arg1) {
 
     }
 
-    @Then("^Check for results for Test №(\\d+)$")
-    public void check_for_results_for_Test(int arg1) {
+    @When("^Click Search button tenth test$")
+    public void click_res_tenth() {
 
     }
 
+    @Then("^Check for results for Tenth Test$")
+    public void check_for_results_for_Test() {
+
+    }
 
 }
