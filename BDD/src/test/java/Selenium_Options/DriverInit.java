@@ -10,14 +10,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
-import java.util.concurrent.TimeUnit;
-
 public abstract class DriverInit {
 
     private static WebDriver driver;
     private static WebDriverWait wait;
     private static Logger log = LogManager.getLogger(AnnotationsTest.class);
-    private static String MainUrl = "https://auto.ria.com/";
 
     public WebDriver getDriver() {
         if (driver == null) {
@@ -50,10 +47,6 @@ public abstract class DriverInit {
 
     @BeforeTest
     public void setUp() {
-        getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        getDriver().manage().window().maximize();
-        getDriver().manage().deleteAllCookies();
-        getDriver().get(MainUrl);
         System.out.println("==================================================================================");
         System.out.println("******************************====START_OF_TEST====*******************************");
         System.out.println("==================================================================================");

@@ -10,6 +10,7 @@ import cucumber.api.java.en.When;
 import org.testng.Assert;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class CucumberTests extends DriverInit {
     private MainPageRia mainPageRia = new MainPageRia();
@@ -20,12 +21,16 @@ public class CucumberTests extends DriverInit {
     private CTOpage ctoPage = new CTOpage();
     private QuestionsPage questionsPage = new QuestionsPage();
     private OtherRiaSites otherRiaSites = new OtherRiaSites();
+    private static String MainUrl = "https://auto.ria.com/";
 
     //First Test
 
     @Given("^Get the Home Page$")
     public void get_the_Home_Page() {
-        //It works by default
+        getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        getDriver().manage().window().maximize();
+        getDriver().manage().deleteAllCookies();
+        getDriver().get(MainUrl);
     }
 
     @When("^Click Enter cabinet$")
@@ -335,5 +340,6 @@ public class CucumberTests extends DriverInit {
     public void check_for_results_for_Test() {
         Assert.assertFalse((getDriver().findElement(extendSearchPageRia.getEmptyResultsBlock()).isDisplayed()), "***Verification Failed!***");
     }
+
 
 }
