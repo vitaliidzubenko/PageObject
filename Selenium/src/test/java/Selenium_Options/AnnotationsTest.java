@@ -1,8 +1,14 @@
 package Selenium_Options;
 
+import io.qameta.allure.Attachment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.testng.IHookCallBack;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
@@ -37,5 +43,17 @@ public class AnnotationsTest extends DriverInit {
         System.out.println("******************************====FINISH_OF_TEST===*******************************");
         System.out.println("==================================================================================");
         s.assertAll();
+    }
+
+    @Attachment(value = "Screenshot of {0}", type = "image/png")
+    public byte[] saveScreenshot(String name, WebDriver driver) {
+        return (byte[]) ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
+    }
+
+    public void run(IHookCallBack iHookCallBack, ITestResult iTestResult) {
+        iHookCallBack.runTestMethod(iTestResult);
+        if (iTestResult.getThrowable() != null) {
+            this.saveScreenshot(iTestResult.getName(), getDriver());
+        }
     }
 }

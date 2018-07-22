@@ -90,7 +90,7 @@ public class APITests extends APIanotation {
         System.out.println("Test finished");
     }
 
-    @Test//TODO
+    @Test(priority = 6)//TODO
     public void getBodyTest() {
         log.error("Sending parameters in JSON and checking status code");
         Response response =
@@ -108,7 +108,7 @@ public class APITests extends APIanotation {
         System.out.println("Test finished");
     }
 
-    @Test//TODO
+    @Test(priority = 7)//TODO
     public void getResponse() {
         log.error("Sending parameters and checking String in content");
         given().
@@ -125,7 +125,7 @@ public class APITests extends APIanotation {
         System.out.println("Test finished");
     }
 
-    @Test//TODO
+    @Test(priority = 8)//TODO
     public void redirectionTest() {
         log.error("Sending parameters at HomePage and check response at redirected page");
         Map<String, String> car = new HashMap<>();
@@ -146,7 +146,7 @@ public class APITests extends APIanotation {
         System.out.println("Test finished");
     }
 
-    //TODO Mapa, OOP in mapa/ assert with comments/ docs api ria/
+    //TODO Mapa, OOP in mapa/ assert with comments
     //TODO testng files 2-3x for runing testscases
 
 }

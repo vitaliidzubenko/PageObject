@@ -22,7 +22,6 @@ public abstract class DriverInit {
         return wait;
     }
 
-    //TODO Set Stable version of browser
     public void setDriver(String... browser) {
         String brLoc = browser.length > 0 ? browser[0] : "chrome";
         switch (brLoc) {
