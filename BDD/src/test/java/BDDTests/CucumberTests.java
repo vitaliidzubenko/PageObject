@@ -2,26 +2,16 @@ package BDDTests;
 
 import RiaTests.*;
 import Selenium_Options.DriverInit;
-import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class CucumberTests extends DriverInit {
     private MainPageRia mainPageRia = new MainPageRia();
-    private LoginPageRia loginPageRia = new LoginPageRia();
-    private DetailResPageRia detailResPageRia = new DetailResPageRia();
-    private ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
-    private ResPageRia resPageRia = new ResPageRia();
-    private CTOpage ctoPage = new CTOpage();
-    private QuestionsPage questionsPage = new QuestionsPage();
-    private OtherRiaSites otherRiaSites = new OtherRiaSites();
-    private static String MainUrl = "https://auto.ria.com/";
 
     //First Test
 
@@ -30,7 +20,7 @@ public class CucumberTests extends DriverInit {
         getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         getDriver().manage().window().maximize();
         getDriver().manage().deleteAllCookies();
-        getDriver().get(MainUrl);
+        getDriver().get(getMainUrl());
     }
 
     @When("^Click Enter cabinet$")
@@ -38,24 +28,27 @@ public class CucumberTests extends DriverInit {
         mainPageRia.clickCabinet();
     }
 
-    @Then("^Click Register$")
+    @And("^Click Register$")
     public void click_Register() {
+        LoginPageRia loginPageRia = new LoginPageRia();
         loginPageRia.clickRegister();
     }
 
-    @When("^Click Enter with Google$")
+    @And("^Click Enter with Google$")
     public void click_Enter_with_Google() {
+        LoginPageRia loginPageRia = new LoginPageRia();
         loginPageRia.clickEnterGoogle();
     }
 
-    @And("^Enter email and password$")
-    public void enter_email_and_password(DataTable parameters) {
-        List<String> parametersAsList = parameters.asList(String.class);
-        loginPageRia.fillPopUpGoogle(parametersAsList.get(0), parametersAsList.get(1));
+    @And("^Enter '(.*)' and '(.*)'$")
+    public void enter_email_and_password(String email, String password) {
+        LoginPageRia loginPageRia = new LoginPageRia();
+        loginPageRia.fillPopUpGoogle(email, password);
     }
 
     @Then("^Verify bug for First Test$")
     public void see_bug_for_Test() {
+        LoginPageRia loginPageRia = new LoginPageRia();
         loginPageRia.checkForEnabledGoogle();
         Assert.assertFalse((getDriver().findElement(loginPageRia.getAfterLoginField()).isDisplayed()), "***Verification Failed!***");
     }
@@ -70,18 +63,20 @@ public class CucumberTests extends DriverInit {
                 .fillYear();
     }
 
-    @Then("^Click Search button second test$")
+    @And("^Click Search button second test$")
     public void click_Search() {
         mainPageRia.clickSubmitButton();
     }
 
-    @When("^Click at fifth result on page$")
+    @And("^Click at fifth result on page$")
     public void click_at_fifth_result_on_page() {
+        ResPageRia resPageRia = new ResPageRia();
         resPageRia.resultSearchHomePage();
     }
 
     @Then("^Verify result for Second Test$")
     public void see_result_for_Test() {
+        DetailResPageRia detailResPageRia = new DetailResPageRia();
         detailResPageRia.detailedInfoElement();
         Assert.assertTrue((getDriver().findElement(detailResPageRia.getContentDisplayed()).isDisplayed()), "***Verification Failed!***");
     }
@@ -93,28 +88,32 @@ public class CucumberTests extends DriverInit {
         mainPageRia.clickExtendedSearch();
     }
 
-    @And("^At Advanced Search Form years of vehicle$")
-    public void at_Advanced_Search_Form_enter_detailed_parameters(DataTable parameters) {
+    @And("^At Advanced Search Form enter years '(.*)' and '(.*)' of vehicle$")
+    public void at_Advanced_Search_Form_enter_detailed_parameters(String y1, String y2) {
+        ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
         extendSearchPageRia.fillBodyType()
                 .fillBrand();
-        List<String> parametersAsList = parameters.asList(String.class);
-        extendSearchPageRia.fillYear(parametersAsList.get(0), parametersAsList.get(1));
+
+        extendSearchPageRia.fillYear(y1, y2);
         extendSearchPageRia.fillregion()
                 .fillFuelType();
     }
 
-    @Then("^Click Search button third test$")
+    @And("^Click Search button third test$")
     public void click_Search_butt() {
+        ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
         extendSearchPageRia.clickShowResultsButton();
     }
 
-    @When("^Click at First result on page$")
+    @And("^Click at First result on page$")
     public void click_at_First_result_on_page() {
+        ResPageRia resPageRia = new ResPageRia();
         resPageRia.clickFirstElementSearch();
     }
 
     @Then("^Verify result for Third Test$")
     public void see_result() {
+        DetailResPageRia detailResPageRia = new DetailResPageRia();
         detailResPageRia.detailedInfoElement();
         Assert.assertTrue((getDriver().findElement(detailResPageRia.getContentDisplayed()).isDisplayed()), "***Verification Failed!***");
     }
@@ -126,29 +125,34 @@ public class CucumberTests extends DriverInit {
         mainPageRia.clickNewCarsHeader();
     }
 
-    @Then("^Choose Chevrolet brand at Catalog of new cars$")
+    @And("^Choose Chevrolet brand at Catalog of new cars$")
     public void choose_Chevrolet_brand_at_Catalog_of_new_cars() {
+        ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
         extendSearchPageRia.clickChevrolet();
     }
 
     @And("^Choose Suburban model at Lineup block$")
     public void choose_Suburban_model_at_Lineup_block() {
+        ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
         extendSearchPageRia.clickSuburban();
     }
 
-    @When("^Click at the image$")
+    @And("^Click at the image$")
     public void click_at_the_image() {
+        ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
         extendSearchPageRia.firstGenModel();
     }
 
-    @Then("^Click at Offers, where to buy$")
+    @And("^Click at Offers, where to buy$")
     public void click_at_Offers_where_to_buy() {
+        ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
         extendSearchPageRia.offersForModel()
                 .modelInfo();
     }
 
-    @And("^Verify result for Fourth Test$")
+    @Then("^Verify result for Fourth Test$")
     public void click_Search_btt() {
+        DetailResPageRia detailResPageRia = new DetailResPageRia();
         detailResPageRia.proposeChevy();
         Assert.assertTrue((getDriver().findElement(detailResPageRia.getProposeContent()).isDisplayed()), "***Verification Failed!***");
     }
@@ -160,7 +164,7 @@ public class CucumberTests extends DriverInit {
         mainPageRia.fillRegion();
     }
 
-    @Then("^Click on Special equipment at types of vehicles block$")
+    @And("^Click on Special equipment at types of vehicles block$")
     public void click_on_Special_equipment_at_types_of_vehicles_block() {
         mainPageRia.clickSpecialVehicle();
     }
@@ -170,19 +174,21 @@ public class CucumberTests extends DriverInit {
         mainPageRia.clickBuldozer();
     }
 
-    @And("^Enter parameters of price in search block and submit it$")
-    public void enter_parameters_in_search_block(DataTable parameters) {
-        List<String> parametersAsList = parameters.asList(String.class);
-        extendSearchPageRia.priceBuldozer(parametersAsList.get(0), parametersAsList.get(1));
+    @And("^Enter parameters of price from '(.*)' and price to '(.*)' and submit it$")
+    public void enter_parameters_in_search_block(String yearF, String yearT) {
+        ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
+        extendSearchPageRia.priceBuldozer(yearF, yearT);
     }
 
-    @When("^Click at the first element at the list$")
+    @And("^Click at the first element at the list$")
     public void click_at_the_first_element_at_the_list() {
+        DetailResPageRia detailResPageRia = new DetailResPageRia();
         detailResPageRia.detailsBuldozer();
     }
 
     @Then("^Verify result for Fifth Test$")
     public void click_Search_tt() {
+        DetailResPageRia detailResPageRia = new DetailResPageRia();
         Assert.assertTrue((getDriver().findElement(detailResPageRia.getContentDisplayed()).isDisplayed()), "***Verification Failed!***");
     }
 
@@ -193,23 +199,27 @@ public class CucumberTests extends DriverInit {
         mainPageRia.hoverClickCars();
     }
 
-    @Then("^Enter parameter at search field and submit it$")
+    @And("^Enter parameter at search field and submit it$")
     public void enter_parameters_at_search_field() {
+        CTOpage ctoPage = new CTOpage();
         ctoPage.chooseCity();
     }
 
-    @When("^Click on tick Official at options block and submit it$")
+    @And("^Click on tick Official at options block and submit it$")
     public void click_on_tick_Official_at_options_block() {
+        CTOpage ctoPage = new CTOpage();
         ctoPage.chooseOfficial();
     }
 
     @And("^Click on Show the phone of first element at the list$")
     public void click_on_Show_the_phone_of_first_element_at_the_list() {
+        CTOpage ctoPage = new CTOpage();
         ctoPage.showHiddenPhone();
     }
 
     @Then("^Verify the phone is shown$")
     public void copy_the_phone_to_clipboard() {
+        CTOpage ctoPage = new CTOpage();
         Assert.assertTrue((getDriver().findElement(ctoPage.getPhoneShown()).isDisplayed()), "***Verification Failed!***");
     }
 
@@ -222,23 +232,27 @@ public class CucumberTests extends DriverInit {
                 .swithcToNewWindow();
     }
 
-    @Then("^Enter How to register at input search field and submit it$")
+    @And("^Enter How to register at input search field and submit it$")
     public void enter_How_to_register_at_input_search_filed() {
+        QuestionsPage questionsPage = new QuestionsPage();
         questionsPage.enterQuestion();
     }
 
     @And("^Click Search button seventh test$")
     public void click_s_butt() {
+        QuestionsPage questionsPage = new QuestionsPage();
         questionsPage.clickAndView();
     }
 
-    @When("^Click at second link of the list$")
+    @And("^Click at second link of the list$")
     public void click_at_nd_link_of_the_list() {
+        QuestionsPage questionsPage = new QuestionsPage();
         questionsPage.enterQuestion();
     }
 
     @Then("^Verify result for Seventh Test$")
     public void res_page() {
+        QuestionsPage questionsPage = new QuestionsPage();
         Assert.assertTrue((getDriver().findElement(questionsPage.getAnswerContent()).isDisplayed()), "***Verification Failed!***");
     }
 
@@ -251,6 +265,7 @@ public class CucumberTests extends DriverInit {
 
     @Then("^Check the address of URL Ria, Get back to Main page$")
     public void check_the_address_of_URL_copy_it() {
+        OtherRiaSites otherRiaSites = new OtherRiaSites();
         otherRiaSites.checkRiaCom();
     }
 
@@ -261,6 +276,7 @@ public class CucumberTests extends DriverInit {
 
     @Then("^Check the address of URL Realty, Get back to Main page$")
     public void check_the_address_of_URL() {
+        OtherRiaSites otherRiaSites = new OtherRiaSites();
         otherRiaSites.checkRealty();
     }
 
@@ -271,6 +287,7 @@ public class CucumberTests extends DriverInit {
 
     @Then("^Check the address of URL Car goods, Get back to Main page$")
     public void check_the_address() {
+        OtherRiaSites otherRiaSites = new OtherRiaSites();
         otherRiaSites.checkCarGoods();
     }
 
@@ -281,11 +298,13 @@ public class CucumberTests extends DriverInit {
 
     @Then("^Check the address of URL Auto parts, Get back to Main page$")
     public void check_the_add() {
+        OtherRiaSites otherRiaSites = new OtherRiaSites();
         otherRiaSites.checkAutoParts();
     }
 
     @And("^Verify that the last website is displayed$")
     public void verify_last() {
+        OtherRiaSites otherRiaSites = new OtherRiaSites();
         Assert.assertTrue((getDriver().findElement(otherRiaSites.getContentHeaderLinks()).isDisplayed()), "***Verification Failed!***");
     }
 
@@ -296,26 +315,30 @@ public class CucumberTests extends DriverInit {
         mainPageRia.clickAbroadCar();
     }
 
-    @Then("^Scroll down to Click at link Cars from Lithuania$")
+    @And("^Scroll down to Click at link Cars from Lithuania$")
     public void scroll_down_to_see_the_block_Cars_from_Europe() {
+        DetailResPageRia detailResPageRia = new DetailResPageRia();
         detailResPageRia.clickLithuania();
     }
 
-    @When("^At the left filters panel enter parameters and submit it$")
+    @And("^At the left filters panel enter parameters and submit it$")
     public void at_the_left_filters_panel_enter_parameters() {
+        DetailResPageRia detailResPageRia = new DetailResPageRia();
         detailResPageRia.clickVehicleType()
                 .clickVehicleType()
                 .clickBrandType()
                 .clickModelOfCar();
     }
 
-    @Then("^Click at one of filtered results$")
+    @And("^Click at one of filtered results$")
     public void scroll_down_to_see_filtered_results() throws InterruptedException {
+        DetailResPageRia detailResPageRia = new DetailResPageRia();
         detailResPageRia.clickFilteredCar();
     }
 
-    @And("^Verify result for Nineth Test$")
+    @Then("^Verify result for Nineth Test$")
     public void see_results() {
+        DetailResPageRia detailResPageRia = new DetailResPageRia();
         Assert.assertTrue((getDriver().findElement(detailResPageRia.getContentDisplayed()).isDisplayed()), "***Verification Failed!***");
     }
 
@@ -328,16 +351,19 @@ public class CucumberTests extends DriverInit {
 
     @And("^Choose a Tank type from drop down list$")
     public void choose_a_Tank_type_from_drop_down_list() {
+        ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
         extendSearchPageRia.fillBrandTruck();
     }
 
-    @Then("^Enter parameters at Search block and submit it$")
+    @And("^Enter parameters at Search block and submit it$")
     public void enter_parameters_at_Search_block() {
+        ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
         extendSearchPageRia.fillYearstruck();
     }
 
-    @And("^Check for results for Tenth Test$")
+    @Then("^Check for results for Tenth Test$")
     public void check_for_results_for_Test() {
+        ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
         Assert.assertFalse((getDriver().findElement(extendSearchPageRia.getEmptyResultsBlock()).isDisplayed()), "***Verification Failed!***");
     }
 

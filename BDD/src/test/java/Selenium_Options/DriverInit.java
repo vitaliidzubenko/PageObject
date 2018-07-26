@@ -1,20 +1,19 @@
 package Selenium_Options;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 
 public abstract class DriverInit {
-
     private static WebDriver driver;
     private static WebDriverWait wait;
-    private static Logger log = LogManager.getLogger(AnnotationsTest.class);
+    private static String MainUrl = "https://auto.ria.com/";
+
+    public static String getMainUrl() {
+        return MainUrl;
+    }
 
     public WebDriver getDriver() {
         if (driver == null) {
@@ -43,24 +42,6 @@ public abstract class DriverInit {
                 driver = new FirefoxDriver();
         }
         wait = new WebDriverWait(driver, 10);
-    }
-
-    @BeforeTest
-    public void setUp() {
-        System.out.println("==================================================================================");
-        System.out.println("******************************====START_OF_TEST====*******************************");
-        System.out.println("==================================================================================");
-        log.error("Start of Test/ Opening Browser");
-    }
-
-    @AfterTest
-    public void closeTest() {
-        getDriver().manage().deleteAllCookies();
-        getDriver().quit();
-        log.error("Finish of Test/ Closing Browser");
-        System.out.println("==================================================================================");
-        System.out.println("******************************====FINISH_OF_TEST===*******************************");
-        System.out.println("==================================================================================");
     }
 
 }
