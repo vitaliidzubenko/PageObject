@@ -2,11 +2,16 @@ package BDDTests;
 
 import RiaTests.*;
 import Selenium_Options.DriverInit;
+import cucumber.api.Scenario;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.After;
+import org.junit.Before;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
@@ -88,15 +93,16 @@ public class CucumberTests extends DriverInit {
         mainPageRia.clickExtendedSearch();
     }
 
-    @And("^At Advanced Search Form enter years '(.*)' and '(.*)' of vehicle$")
-    public void at_Advanced_Search_Form_enter_detailed_parameters(String y1, String y2) {
+    @And("^At Advanced Search Form enter '(.*?)' and '(.*?)' of vehicle$")
+    public void at_Advanced_Search_Form_enter_detailed_parameters(String yearF, String yearT) {
         ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
         extendSearchPageRia.fillBodyType()
                 .fillBrand();
 
-        extendSearchPageRia.fillYear(y1, y2);
+        extendSearchPageRia.fillYear(yearF, yearT);
         extendSearchPageRia.fillregion()
                 .fillFuelType();
+
     }
 
     @And("^Click Search button third test$")
@@ -238,16 +244,16 @@ public class CucumberTests extends DriverInit {
         questionsPage.enterQuestion();
     }
 
-    @And("^Click Search button seventh test$")
+    @And("^Click at Link$")
     public void click_s_butt() {
         QuestionsPage questionsPage = new QuestionsPage();
-        questionsPage.clickAndView();
+        questionsPage.clickLink();
     }
 
-    @And("^Click at second link of the list$")
+    @And("^View content of Link$")
     public void click_at_nd_link_of_the_list() {
         QuestionsPage questionsPage = new QuestionsPage();
-        questionsPage.enterQuestion();
+        questionsPage.viewLink();
     }
 
     @Then("^Verify result for Seventh Test$")
@@ -322,7 +328,7 @@ public class CucumberTests extends DriverInit {
     }
 
     @And("^At the left filters panel enter parameters and submit it$")
-    public void at_the_left_filters_panel_enter_parameters() {
+    public void at_the_left_filters_panel_enter_parameters() throws InterruptedException {
         DetailResPageRia detailResPageRia = new DetailResPageRia();
         detailResPageRia.clickVehicleType()
                 .clickVehicleType()
@@ -331,7 +337,7 @@ public class CucumberTests extends DriverInit {
     }
 
     @And("^Click at one of filtered results$")
-    public void scroll_down_to_see_filtered_results() throws InterruptedException {
+    public void scroll_down_to_see_filtered_results() {
         DetailResPageRia detailResPageRia = new DetailResPageRia();
         detailResPageRia.clickFilteredCar();
     }

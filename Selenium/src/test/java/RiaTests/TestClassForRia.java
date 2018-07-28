@@ -103,7 +103,8 @@ public class TestClassForRia extends AnnotationsTest {
                 .swithcToNewWindow();
         questionsPage
                 .enterQuestion()
-                .clickAndView();
+                .clickLink()
+                .viewLink();
         Assert.assertTrue((getDriver().findElement(questionsPage.getAnswerContent()).isDisplayed()), "***Verification Failed!***");
     }
 
@@ -130,7 +131,6 @@ public class TestClassForRia extends AnnotationsTest {
         mainPageRia.clickAbroadCar();
         detailResPageRia
                 .clickLithuania()
-                .clickVehicleType()
                 .clickVehicleType()
                 .clickBrandType()
                 .clickModelOfCar()

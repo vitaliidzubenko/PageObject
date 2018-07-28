@@ -8,9 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class QuestionsPage extends DriverInit {
     private final Logger log = LogManager.getLogger(QuestionsPage.class);
-    private final By inputBlock = By.xpath("//div[@class = 'container-content']//input[@class = 'flex']");
-    private final By searchButton = By.xpath("//div[@class = 'container-content']//input[@class = 'button-search']");
-    private final By searchLink = By.xpath("//div[@class = 'container-content']//a[contains (text(), 'Как зарегистрироваться')]");
+    private final By inputBlock = By.xpath("//input[@name= 'question']");
+    private final By searchButton = By.xpath("//button[@class = 'btn-send no-style']");
+    private final By searchLink = By.xpath("//a[contains (text(), 'Как зарегистрироваться')]");
     private final By answerContent = By.xpath("//div[@class = 'answer-list']");
 
     public QuestionsPage enterQuestion() {
@@ -20,9 +20,14 @@ public class QuestionsPage extends DriverInit {
         return this;
     }
 
-    public QuestionsPage clickAndView() {
-        log.error("clickAndView");
+    public QuestionsPage clickLink() {
+        log.error("clickLink");
         getWait().until(ExpectedConditions.visibilityOfElementLocated(searchLink)).click();
+        return this;
+    }
+
+    public QuestionsPage viewLink() {
+        log.error("viewLink");
         getWait().until(ExpectedConditions.visibilityOfElementLocated(answerContent));
         return this;
     }

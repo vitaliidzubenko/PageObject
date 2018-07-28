@@ -48,14 +48,14 @@ formatter.match({
   "location": "CucumberTests.get_the_Home_Page()"
 });
 formatter.result({
-  "duration": 8716640335,
+  "duration": 10158137812,
   "status": "passed"
 });
 formatter.match({
   "location": "CucumberTests.click_Enter_cabinet()"
 });
 formatter.result({
-  "duration": 7933632869,
+  "duration": 2437556299,
   "status": "passed"
 });
 formatter.match({

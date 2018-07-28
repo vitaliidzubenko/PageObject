@@ -19,7 +19,7 @@ public class DetailResPageRia extends DriverInit {
     private final By brandOfCar = By.xpath("//select[@name = 'make_id']");
     private final By brandBMW = By.xpath("//select[@name = 'make_id']//option[3]");
     private final By modelOfCar = By.xpath("//select[@name = 'model_id']");
-    private final By x5mModel = By.xpath("//select[@name = 'model_id']//option[27]");
+    private final By x5mModel = By.xpath("//select[@name = 'model_id']//option[@value = '149']");
     private final By filteredCar = By.xpath("//div[@class = 'ticket-item paid']//a[@title = 'Подробно']");
 
     public DetailResPageRia detailedInfoElement() {
@@ -61,16 +61,16 @@ public class DetailResPageRia extends DriverInit {
         return this;
     }
 
-    public DetailResPageRia clickModelOfCar() {
+    public DetailResPageRia clickModelOfCar() throws InterruptedException {
         log.error("clickModelOfCar");
         getWait().until(ExpectedConditions.visibilityOfElementLocated(modelOfCar)).click();
         getDriver().findElement(x5mModel).click();
+        Thread.sleep(3500);
         return this;
     }
 
-    public DetailResPageRia clickFilteredCar() throws InterruptedException {
+    public DetailResPageRia clickFilteredCar() {
         log.error("waiting for refreshed results");
-        Thread.sleep(3500);
         log.error("clickFilteredCar");
         getWait().until(ExpectedConditions.visibilityOfElementLocated(filteredCar)).click();
         return this;

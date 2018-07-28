@@ -1,10 +1,10 @@
 package RiaTests;
 
-import Selenium_Options.AnnotationsTest;
+import Selenium_Options.DriverInit;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestClassForRia extends AnnotationsTest {
+public class TestClassForRia extends DriverInit {
     private MainPageRia mainPageRia = new MainPageRia();
     private DetailResPageRia detailResPageRia = new DetailResPageRia();
     private ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
@@ -95,7 +95,8 @@ public class TestClassForRia extends AnnotationsTest {
                 .swithcToNewWindow();
         questionsPage
                 .enterQuestion()
-                .clickAndView();
+                .clickLink()
+                .viewLink();
         Assert.assertTrue((getDriver().findElement(questionsPage.getAnswerContent()).isDisplayed()), "***Verification Failed!***");
     }
 
@@ -121,7 +122,6 @@ public class TestClassForRia extends AnnotationsTest {
         detailResPageRia
                 .clickLithuania()
                 .clickVehicleType()
-                //.clickVehicleType()//TODO
                 .clickBrandType()
                 .clickModelOfCar()
                 .clickFilteredCar();
