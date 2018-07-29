@@ -14,18 +14,16 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.*;
 
 public class APITests extends APIanotation {
     private final Logger log = LogManager.getLogger(APITests.class);
 
     @Test(priority = 1)
-    public void getTest() {
-        log.error("Checking status code at HomePage");
+    public void getStatusCode() {
+        log.error("Checking status code");
         Response response = given().when().
-                get("/car/used/");
+                get();
         int code = response.getStatusCode();
         System.out.println("Response code is " + code);
         Assert.assertEquals(code, 200, "***Verification failed***");
@@ -33,36 +31,52 @@ public class APITests extends APIanotation {
     }
 
     @Test(priority = 2)
-    public void getTime() {
+    public void getResponseTime() {
         log.error("Getting time of response");
-        Response response =
-                get("/car/used/");
         long timeInSeconds = get().timeIn(TimeUnit.MILLISECONDS);
-        System.out.println("Time is " + timeInSeconds + " MILLISECONDS");
-        int code = response.getStatusCode();
-        System.out.println("Response code is " + code);
-        Assert.assertEquals(code, 200, "***Verification failed***");
+        System.out.println("Time of response is " + timeInSeconds + " MILLISECONDS");
         System.out.println("Test finished");
     }
 
     @Test(priority = 3)
-    public void get_params() {
-        log.error("Verifiyng that body contains Audi after sending params");
+    public void getCity() {
+        log.error("Verifying that body contains City after sending params");
         given().
-                param("category_id", "1").
-                param("marka_id", "6").
-                param("model_id", "51").
                 when().
-                get().
-                then().assertThat().
-                statusCode(200).
-                and().
-                body(containsString("Audi")).
-                body(containsString("A5"));
+                get("/auto/states/1/cities?api_key=3gGaWJ5XsrkOF7gx3qrg2Nhaw7iy8g4EjqYCbSQL").
+                then().
+                assertThat().body("name", hasItem("Винница"));
         System.out.println("Test finished");
     }
 
     @Test(priority = 4)
+    public void getMarks() {
+        log.error("Verifying that body contains Marks after sending params");
+        given().
+                when().
+                get("auto/categories/1/marks?api_key=3gGaWJ5XsrkOF7gx3qrg2Nhaw7iy8g4EjqYCbSQL").
+                then().
+                assertThat().body("name", hasItem("Audi"));
+        System.out.println("Test finished");
+    }
+
+    @Test//TODO
+    public void get_params() {
+        log.error("Verifying that body contains Audi after sending params");
+        given().
+                param("bodystyle[0]", "3").
+                param("marka_id", "6").
+                param("model_id[0]", "0").
+                param("s_yers[0]", "2010").
+                param("po_yers[0]", "2017").
+                when().
+                get("auto/search?api_key=3gGaWJ5XsrkOF7gx3qrg2Nhaw7iy8g4EjqYCbSQL").
+                then().assertThat().
+                statusCode(200);
+        System.out.println("Test finished");
+    }
+
+    @Test
     public void watchResponse() {
         log.error("Viewing all content in response");
         Response response =
@@ -78,11 +92,11 @@ public class APITests extends APIanotation {
         System.out.println("Test finished");
     }
 
-    @Test(priority = 5)
+    @Test
     public void getData() {
         log.error("Opening sublink and check data in content");
         when().
-                get("/car/used/").
+                get().
                 then().
                 statusCode(200).
                 and().assertThat().
@@ -90,7 +104,7 @@ public class APITests extends APIanotation {
         System.out.println("Test finished");
     }
 
-    @Test(priority = 6)//TODO
+    @Test//TODO
     public void getBodyTest() {
         log.error("Sending parameters in JSON and checking status code");
         Response response =
@@ -102,44 +116,6 @@ public class APITests extends APIanotation {
                         when().
                         contentType(ContentType.JSON).
                                 post();
-        int code = response.getStatusCode();
-        System.out.println("Response code is " + code);
-        Assert.assertEquals(code, 200, "***Verification failed***");
-        System.out.println("Test finished");
-    }
-
-    @Test(priority = 7)//TODO
-    public void getResponse() {
-        log.error("Sending parameters and checking String in content");
-        given().
-                param("category_id", "1").
-                param("marka_id", "6").
-                param("model_id", "51").
-                expect().
-                body("brand", equalTo("Audi"));
-        when().
-                post().
-                then().
-                statusCode(200).
-                log().status();
-        System.out.println("Test finished");
-    }
-
-    @Test(priority = 8)//TODO
-    public void redirectionTest() {
-        log.error("Sending parameters at HomePage and check response at redirected page");
-        Map<String, String> car = new HashMap<>();
-        car.put("category_id", "1");
-        car.put("marka_id", "6");
-        car.put("model_id", "51");
-        Response response =
-                given()
-                        .contentType("application/json")
-                        .body(car)
-                        .when()
-                        .redirects().follow(true)
-                        .post("/car/used/");
-        System.out.println("Returned full html " + response.getStatusCode());
         int code = response.getStatusCode();
         System.out.println("Response code is " + code);
         Assert.assertEquals(code, 200, "***Verification failed***");
