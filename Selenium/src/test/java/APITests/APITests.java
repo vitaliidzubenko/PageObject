@@ -4,6 +4,7 @@ import io.restassured.config.EncoderConfig;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -60,20 +61,24 @@ public class APITests extends APIanotation {
         System.out.println("Test finished");
     }
 
-    @Test//TODO
+    @Test(priority = 5)//TODO
     public void get_params() {
         log.error("Verifying that body contains Audi after sending params");
-        given().
-                param("bodystyle[0]", "3").
-                param("marka_id", "6").
-                param("model_id[0]", "0").
-                param("s_yers[0]", "2010").
-                param("po_yers[0]", "2017").
-                when().
-                get("auto/search?api_key=3gGaWJ5XsrkOF7gx3qrg2Nhaw7iy8g4EjqYCbSQL").
-                then().assertThat().
-                statusCode(200);
-        System.out.println("Test finished");
+        Response response =
+                given().log().all().
+                        param("marka_id", "79").
+                        param("model_id", "0").
+                        param("s_yers", "2010").
+                        param("po_yers", "2017").
+                        when().
+                        get("auto/search?api_key=3gGaWJ5XsrkOF7gx3qrg2Nhaw7iy8g4EjqYCbSQL").
+                        then().
+                        //contentType(ContentType.JSON).
+                        //body("title", equalTo("My Title")).
+                        extract().
+                        response();
+        String body = response.toString();
+        System.out.println(body);
     }
 
     @Test
