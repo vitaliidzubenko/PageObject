@@ -1,1 +1,0 @@
-{"uuid":"3ed93366-2c7e-487b-b163-f48be5d6f6c1","name":"Selenium","start":1532964045315,"stop":1532964050110,"children":["1bd53d63-d94d-46ff-ac10-d212125803b1"],"befores":[{"name":"setup","status":"passed","stage":"finished","description":"","start":1532964045357,"stop":1532964046246}]}

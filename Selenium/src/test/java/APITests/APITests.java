@@ -1,39 +1,38 @@
 package APITests;
 
-import io.restassured.config.EncoderConfig;
-import io.restassured.config.RestAssuredConfig;
-import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import io.restassured.response.ResponseBody;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import static io.restassured.RestAssured.*;
-import static org.hamcrest.CoreMatchers.*;
+import static io.restassured.RestAssured.get;
+import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.responseSpecification;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.hasItems;
 
 public class APITests extends APIanotation {
     private final Logger log = LogManager.getLogger(APITests.class);
+    private final String APIKey = "api_key=3gGaWJ5XsrkOF7gx3qrg2Nhaw7iy8g4EjqYCbSQL";
 
     @Test(priority = 1)
     public void getStatusCode() {
-        log.error("Checking status code");
-        Response response = given().when().
-                get();
+        log.error("Checking status code at AutoRia");
+        Response response =
+                given().
+                        when().get();
         int code = response.getStatusCode();
-        System.out.println("Response code is " + code);
+        System.out.println("Status code is " + code);
         Assert.assertEquals(code, 200, "***Verification failed***");
         System.out.println("Test finished");
     }
 
     @Test(priority = 2)
     public void getResponseTime() {
-        log.error("Getting time of response");
+        log.error("Getting time of response at AutoRia");
         long timeInSeconds = get().timeIn(TimeUnit.MILLISECONDS);
         System.out.println("Time of response is " + timeInSeconds + " MILLISECONDS");
         System.out.println("Test finished");
@@ -41,93 +40,119 @@ public class APITests extends APIanotation {
 
     @Test(priority = 3)
     public void getCity() {
-        log.error("Verifying that body contains City after sending params");
+        log.error("Verifying that body contains Cities in Vinnitsa Region after sending params");
         given().
                 when().
-                get("/auto/states/1/cities?api_key=3gGaWJ5XsrkOF7gx3qrg2Nhaw7iy8g4EjqYCbSQL").
+                get("auto/states/1/cities?" + APIKey).
                 then().
-                assertThat().body("name", hasItem("Винница"));
+                assertThat().body("name", hasItem("Винница")).
+                assertThat().body("name", hasItem("Немиров")).
+                assertThat().body("name", hasItem("Тульчин"));
         System.out.println("Test finished");
     }
 
     @Test(priority = 4)
+    public void getTypTran() {
+        log.error("Verifying that body contains Types of Transport after sending params");
+        given().
+                when().
+                get("auto/categories/?" + APIKey).
+                then().
+                assertThat().body("value", hasItems(1, 2, 3, 4, 5, 6, 7, 8, 9));
+        System.out.println("Test finished");
+    }
+
+    @Test(priority = 5)
     public void getMarks() {
         log.error("Verifying that body contains Marks after sending params");
         given().
                 when().
-                get("auto/categories/1/marks?api_key=3gGaWJ5XsrkOF7gx3qrg2Nhaw7iy8g4EjqYCbSQL").
+                get("auto/categories/1/marks?" + APIKey).
                 then().
-                assertThat().body("name", hasItem("Audi"));
+                assertThat().body("name", hasItem("Audi")).
+                assertThat().body("name", hasItem("Bentley")).
+                assertThat().body("name", hasItem("BMW")).
+                assertThat().body("name", hasItem("Bugatti")).
+                assertThat().body("name", hasItem("Chevrolet"));
         System.out.println("Test finished");
     }
 
-    @Test(priority = 5)//TODO
-    public void get_params() {
-        log.error("Verifying that body contains Audi after sending params");
+    @Test(priority = 6)
+    public void getModels() {
+        log.error("Verifying that body contains Ferrari models after sending params");
+        given().
+                when().
+                get("auto/categories/1/marks/22/models/_group?" + APIKey).
+                then().
+                assertThat().body("name", hasItem("LaFerrari")).
+                assertThat().body("name", hasItem("Mondial")).
+                assertThat().body("name", hasItem("Testarossa")).
+                assertThat().body("name", hasItem("Scuderia Spider 16M Convertible")).
+                assertThat().body("name", hasItem("California")).
+                assertThat().body("name", hasItem("458 Italia"));
+        System.out.println("Test finished");
+    }
+
+    @Test(priority = 7)
+    public void getSearch() {
+        log.error("Displaying request body at Search service for Audi Q8 2010-2017 in Vinnitsa");
         Response response =
                 given().log().all().
-                        param("marka_id", "79").
-                        param("model_id", "0").
+                        param("marka_id", "6").
+                        param("model_id", "54663").
                         param("s_yers", "2010").
                         param("po_yers", "2017").
+                        param("city", "1").
                         when().
-                        get("auto/search?api_key=3gGaWJ5XsrkOF7gx3qrg2Nhaw7iy8g4EjqYCbSQL").
-                        then().
-                        //contentType(ContentType.JSON).
-                        //body("title", equalTo("My Title")).
-                        extract().
-                        response();
-        String body = response.toString();
-        System.out.println(body);
-    }
-
-    @Test
-    public void watchResponse() {
-        log.error("Viewing all content in response");
-        Response response =
-                when().
-                        get("/car/used/").
-                        then().
-                        extract().response();
-        String jsonAsString = response.prettyPrint();
-        System.out.println(jsonAsString);
+                        get("auto/search?" + APIKey);
+        String body = response.prettyPrint();
         int code = response.getStatusCode();
-        System.out.println("Response code is " + code);
-        Assert.assertEquals(code, 200, "***Verification failed***");
-        System.out.println("Test finished");
+        System.out.println(body);
+        System.out.println("Test finished" + " and status code is " + code);
     }
 
-    @Test
-    public void getData() {
-        log.error("Opening sublink and check data in content");
-        when().
-                get().
-                then().
-                statusCode(200).
-                and().assertThat().
-                body(containsString("200 000+ объявлений о продаже авто с пробегом в Украине"));
-        System.out.println("Test finished");
+    @Test(priority = 8)
+    public void getAveragePrice() {
+        log.error("Displaying average price for Ford Focus 2012-2018 in Vinnitsa");
+        Response response =
+                given().log().all().
+                        param("marka_id", "24").
+                        param("model_id", "240").
+                        param("s_yers", "2012").
+                        param("po_yers", "2018").
+                        param("city", "1").
+                        when().
+                        get("auto/average_price?" + APIKey);
+        String body = response.prettyPrint();
+        int code = response.getStatusCode();
+        System.out.println(body);
+        System.out.println("Test finished" + " and status code is " + code);
     }
 
-    @Test//TODO
-    public void getBodyTest() {
-        log.error("Sending parameters in JSON and checking status code");
+    @Test(priority = 9)
+    public void getInfo() {
+        log.error("Displaying info by autoID after sending params");
         Response response =
                 given().
-                        config(RestAssuredConfig.newConfig().encoderConfig(EncoderConfig.encoderConfig().defaultContentCharset("US-ASCII"))).
-                        body("{'category_id':'1'," +
-                                " 'marka_id':'6'," +
-                                " 'model_id':'51'}").
+                        param("auto_id", "19050985").
                         when().
-                        contentType(ContentType.JSON).
-                                post();
-        int code = response.getStatusCode();
-        System.out.println("Response code is " + code);
-        Assert.assertEquals(code, 200, "***Verification failed***");
+                        get("auto/info?" + APIKey);
+        String body = response.prettyPrint();
+        System.out.println(body);
         System.out.println("Test finished");
     }
 
-    //TODO Mapa, OOP in mapa/ assert with comments
-    //TODO testng files 2-3x for runing testscases
+    @Test(priority = 10)
+    public void getOptions() {
+        log.error("Verifying that body contains options after sending params");
+        given().
+                when().
+                get("/auto/categories/1/options?" + APIKey).
+                then().
+                assertThat().body("name", hasItem("ABS")).
+                assertThat().body("name", hasItem("ABD")).
+                assertThat().body("name", hasItem("Пневмоподвеска"));
+        System.out.println("Test finished");
+    }
 
 }
