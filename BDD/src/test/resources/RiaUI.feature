@@ -10,7 +10,7 @@ Feature: : Testing UI AutoRia
     And Enter 'test.for.ria@gmail.com' and 'test.for.ria123'
     Then Verify bug for First Test
 
-  #@Run
+  @Run
   Scenario: №2 Default search by Search Field at Home Page
     When At Search Form enter parameters
     And Click Search button second test
