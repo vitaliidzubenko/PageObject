@@ -2,6 +2,7 @@ package TestClases;
 
 import RiaPages.*;
 import TestOptions.TestAnnotation;
+import TestOptions.TestParameters;
 import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,7 +13,7 @@ public class TestClassForRia extends TestAnnotation {
 
     @Description("This test is checking the login with Google account")
     @Test(priority = 1,
-            dataProvider = "CredentialsForLogin")
+            dataProvider = "CredentialsForLogin", dataProviderClass = TestParameters.class)
     public void firstTestCase(String email, String password) {
         mainPage.clickCabinet();
         LoginPageRia loginPageRia = new LoginPageRia();
@@ -41,7 +42,7 @@ public class TestClassForRia extends TestAnnotation {
 
     @Description("This test is checking search results by extended search form using parameters")
     @Test(priority = 3,
-            dataProvider = "DataYear")
+            dataProvider = "DataYear", dataProviderClass = TestParameters.class)
     public void thirdTestCase(String yearF, String yearT) {
         ResPageRia resPageRia = new ResPageRia();
         mainPage.clickExtendedSearch();
@@ -73,7 +74,7 @@ public class TestClassForRia extends TestAnnotation {
 
     @Description("This test is checking special vehicle results with parameters")
     @Test(priority = 5,
-            dataProvider = "DataPrice")
+            dataProvider = "DataPrice", dataProviderClass = TestParameters.class)
     public void fifthTestCase(String priceF, String priceT) {
         mainPage
                 .fillRegion()
