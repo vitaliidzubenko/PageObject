@@ -11,17 +11,6 @@ public abstract class DriverInit {
     private static WebDriver driver;
     private static WebDriverWait wait;
 
-    public WebDriver getDriver() {
-        if (driver == null) {
-            setDriver();
-        }
-        return driver;
-    }
-
-    public WebDriverWait getWait() {
-        return wait;
-    }
-
     public void setDriver(String... browser) {
         String brLoc = browser.length > 0 ? browser[0] : "chrome";
         switch (brLoc) {
@@ -39,4 +28,16 @@ public abstract class DriverInit {
         }
         wait = new WebDriverWait(driver, 10);
     }
+
+    public WebDriver getDriver() {
+        if (driver == null) {
+            setDriver();
+        }
+        return driver;
+    }
+
+    public WebDriverWait getWait() {
+        return wait;
+    }
+
 }

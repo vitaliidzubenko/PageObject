@@ -8,18 +8,18 @@ import org.testng.annotations.Test;
 
 public class TestClassForRia extends TestAnnotation {
     private MainPageRia mainPage = new MainPageRia();
-    private DetailResPageRia detResPage = new DetailResPageRia();
     private ExtendSearchPageRia extSearch = new ExtendSearchPageRia();
 
     @Description("This test is checking the login with Google account")
-    @Test(priority = 1)
-    public void firstTestCase() {
+    @Test(priority = 1,
+            dataProvider = "CredentialsForLogin")
+    public void firstTestCase(String email, String password) {
         mainPage.clickCabinet();
         LoginPageRia loginPageRia = new LoginPageRia();
         loginPageRia
                 .clickRegister()
                 .clickEnterGoogle()
-                .fillPopUpGoogle("test.for.ria@gmail.com", "test.for.ria123");
+                .fillPopUpGoogle(email, password);
         loginPageRia.checkForEnabledGoogle();
         Assert.assertFalse((getDriver().findElement(loginPageRia.getAfterLoginField()).isDisplayed()), "***Verification Failed!***");
     }
@@ -35,24 +35,25 @@ public class TestClassForRia extends TestAnnotation {
                 .clickSubmitButton();
         ResPageRia resPageRia = new ResPageRia();
         resPageRia.resultSearchHomePage();
-        detResPage.detailedInfoElement();
+        DetailResPageRia detResPage = new DetailResPageRia().detailedInfoElement();
         Assert.assertTrue((getDriver().findElement(detResPage.getContentDisplayed()).isDisplayed()), "***Verification Failed!***");
     }
 
     @Description("This test is checking search results by extended search form using parameters")
-    @Test(priority = 3)
-    public void thirdTestCase() {
+    @Test(priority = 3,
+            dataProvider = "DataYear")
+    public void thirdTestCase(String yearF, String yearT) {
         ResPageRia resPageRia = new ResPageRia();
         mainPage.clickExtendedSearch();
         extSearch
                 .fillBodyType()
                 .fillBrand()
-                .fillYear("2010", "2015")
+                .fillYear(yearF, yearT)
                 .fillregion()
                 .fillFuelType()
                 .clickShowResultsButton();
         resPageRia.clickFirstElementSearch();
-        detResPage.detailedInfoElement();
+        DetailResPageRia detResPage = new DetailResPageRia().detailedInfoElement();
         Assert.assertTrue((getDriver().findElement(detResPage.getContentDisplayed()).isDisplayed()), "***Verification Failed!***");
     }
 
@@ -66,20 +67,21 @@ public class TestClassForRia extends TestAnnotation {
                 .firstGenModel()
                 .offersForModel()
                 .modelInfo();
-        detResPage.proposeChevy();
+        DetailResPageRia detResPage = new DetailResPageRia().proposeChevy();
         Assert.assertTrue((getDriver().findElement(detResPage.getProposeContent()).isDisplayed()), "***Verification Failed!***");
     }
 
     @Description("This test is checking special vehicle results with parameters")
-    @Test(priority = 5)
-    public void fifthTestCase() {
+    @Test(priority = 5,
+            dataProvider = "DataPrice")
+    public void fifthTestCase(String priceF, String priceT) {
         mainPage
                 .fillRegion()
                 .clickSpecialVehicle()
                 .clickBuldozer();
         extSearch
-                .priceBuldozer("40000", "70000");
-        detResPage.detailsBuldozer();
+                .priceBuldozer(priceF, priceT);
+        DetailResPageRia detResPage = new DetailResPageRia().detailsBuldozer();
         Assert.assertTrue((getDriver().findElement(detResPage.getContentDisplayed()).isDisplayed()), "***Verification Failed!***");
     }
 
@@ -129,7 +131,7 @@ public class TestClassForRia extends TestAnnotation {
     @Test(priority = 9)
     public void ninethTestCase() throws InterruptedException {
         mainPage.clickAbroadCar();
-        detResPage
+        DetailResPageRia detResPage = new DetailResPageRia()
                 .clickLithuania()
                 .clickVehicleType()
                 .clickBrandType()
