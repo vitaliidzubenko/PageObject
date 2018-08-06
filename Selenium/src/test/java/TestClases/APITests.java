@@ -16,7 +16,6 @@ import static org.hamcrest.CoreMatchers.hasItems;
 
 public class APITests extends ApiOptions {
     private final Logger log = LogManager.getLogger(APITests.class);
-    private final String APIKey = "api_key=3gGaWJ5XsrkOF7gx3qrg2Nhaw7iy8g4EjqYCbSQL";
 
     @Test(priority = 1)
     public void getStatusCode() {
