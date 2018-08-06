@@ -5,9 +5,10 @@ import TestOptions.TestAnnotation;
 import TestOptions.TestParameters;
 import io.qameta.allure.Description;
 import org.testng.Assert;
+import org.testng.IHookable;
 import org.testng.annotations.Test;
 
-public class TestClassForRia extends TestAnnotation {
+public class TestClassForRia extends TestAnnotation implements IHookable {
     private MainPageRia mainPage = new MainPageRia();
     private ExtendSearchPageRia extSearch = new ExtendSearchPageRia();
 
@@ -150,4 +151,5 @@ public class TestClassForRia extends TestAnnotation {
                 .fillYearstruck();
         Assert.assertFalse((getDriver().findElement(extSearch.getEmptyResultsBlock()).isDisplayed()), "***Verification Failed!***");
     }
+
 }
