@@ -1,6 +1,7 @@
 package TestClases;
 
 import TestOptions.ApiOptions;
+import io.qameta.allure.Description;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,29 +18,32 @@ import static org.hamcrest.CoreMatchers.hasItems;
 public class APITests extends ApiOptions {
     private final Logger log = LogManager.getLogger(APITests.class);
 
+    @Description("Checking status code at AutoRia")
     @Test(priority = 1)
     public void getStatusCode() {
-        log.error("Checking status code at AutoRia");
+        log.error("Start of test #1");
         Response response =
                 given().
                         when().get();
         int code = response.getStatusCode();
         System.out.println("Status code is " + code);
         Assert.assertEquals(code, 200, "***Verification failed***");
-        System.out.println("Test finished");
+        log.error("Test #1 finished");
     }
 
+    @Description("Getting time of response at AutoRia")
     @Test(priority = 2)
     public void getResponseTime() {
-        log.error("Getting time of response at AutoRia");
+        log.error("Start of test #2");
         long timeInSeconds = get().timeIn(TimeUnit.MILLISECONDS);
         System.out.println("Time of response is " + timeInSeconds + " MILLISECONDS");
-        System.out.println("Test finished");
+        log.error("Test #2 finished");
     }
 
+    @Description("Verifying that body contains Cities in Vinnitsa Region after sending params")
     @Test(priority = 3)
-    public void getCity() {
-        log.error("Verifying that body contains Cities in Vinnitsa Region after sending params");
+    public void getCityList() {
+        log.error("Start of test #3");
         given().
                 when().
                 get("auto/states/1/cities?" + APIKey).
@@ -47,23 +51,25 @@ public class APITests extends ApiOptions {
                 assertThat().body("name", hasItem("Винница")).
                 assertThat().body("name", hasItem("Немиров")).
                 assertThat().body("name", hasItem("Тульчин"));
-        System.out.println("Test finished");
+        log.error("Test #3 finished");
     }
 
+    @Description("Verifying that body contains Types of Transport after sending params")
     @Test(priority = 4)
-    public void getTypTran() {
-        log.error("Verifying that body contains Types of Transport after sending params");
+    public void getTypeOfTransport() {
+        log.error("Start of test #4");
         given().
                 when().
                 get("auto/categories/?" + APIKey).
                 then().
                 assertThat().body("value", hasItems(1, 2, 3, 4, 5, 6, 7, 8, 9));
-        System.out.println("Test finished");
+        log.error("Test #4 finished");
     }
 
+    @Description("Verifying that body contains Marks after sending params")
     @Test(priority = 5)
-    public void getMarks() {
-        log.error("Verifying that body contains Marks after sending params");
+    public void getMarksList() {
+        log.error("Start of test #5");
         given().
                 when().
                 get("auto/categories/1/marks?" + APIKey).
@@ -73,12 +79,13 @@ public class APITests extends ApiOptions {
                 assertThat().body("name", hasItem("BMW")).
                 assertThat().body("name", hasItem("Bugatti")).
                 assertThat().body("name", hasItem("Chevrolet"));
-        System.out.println("Test finished");
+        log.error("Test #5 finished");
     }
 
+    @Description("Verifying that body contains Ferrari models after sending params")
     @Test(priority = 6)
-    public void getModels() {
-        log.error("Verifying that body contains Ferrari models after sending params");
+    public void getModelsList() {
+        log.error("Start of test #6");
         given().
                 when().
                 get("auto/categories/1/marks/22/models/_group?" + APIKey).
@@ -89,12 +96,13 @@ public class APITests extends ApiOptions {
                 assertThat().body("name", hasItem("Scuderia Spider 16M Convertible")).
                 assertThat().body("name", hasItem("California")).
                 assertThat().body("name", hasItem("458 Italia"));
-        System.out.println("Test finished");
+        log.error("Test #6 finished");
     }
 
+    @Description("Displaying request body at Search service for Audi Q8 2010-2017 in Vinnitsa")
     @Test(priority = 7)
     public void getSearch() {
-        log.error("Displaying request body at Search service for Audi Q8 2010-2017 in Vinnitsa");
+        log.error("Start of test #7");
         Response response =
                 given().log().all().
                         param("marka_id", "6").
@@ -107,12 +115,14 @@ public class APITests extends ApiOptions {
         String body = response.prettyPrint();
         int code = response.getStatusCode();
         System.out.println(body);
-        System.out.println("Test finished" + " and status code is " + code);
+        System.out.println("Status code is " + code);
+        log.error("Test #7 finished");
     }
 
+    @Description("Displaying average price for Ford Focus 2012-2018 in Vinnitsa")
     @Test(priority = 8)
     public void getAveragePrice() {
-        log.error("Displaying average price for Ford Focus 2012-2018 in Vinnitsa");
+        log.error("Start of test #8");
         Response response =
                 given().log().all().
                         param("marka_id", "24").
@@ -125,12 +135,14 @@ public class APITests extends ApiOptions {
         String body = response.prettyPrint();
         int code = response.getStatusCode();
         System.out.println(body);
-        System.out.println("Test finished" + " and status code is " + code);
+        System.out.println("Status code is " + code);
+        log.error("Test #8 finished");
     }
 
+    @Description("Displaying info by autoID after sending params")
     @Test(priority = 9)
-    public void getInfo() {
-        log.error("Displaying info by autoID after sending params");
+    public void getCarInfo() {
+        log.error("Start of test #9");
         Response response =
                 given().
                         param("auto_id", "19050985").
@@ -138,12 +150,13 @@ public class APITests extends ApiOptions {
                         get("auto/info?" + APIKey);
         String body = response.prettyPrint();
         System.out.println(body);
-        System.out.println("Test finished");
+        log.error("Test #9 finished");
     }
 
+    @Description("Verifying that body contains options after sending params")
     @Test(priority = 10)
-    public void getOptions() {
-        log.error("Verifying that body contains options after sending params");
+    public void getOptionsList() {
+        log.error("Start of test #10");
         given().
                 when().
                 get("/auto/categories/1/options?" + APIKey).
@@ -151,7 +164,7 @@ public class APITests extends ApiOptions {
                 assertThat().body("name", hasItem("ABS")).
                 assertThat().body("name", hasItem("ABD")).
                 assertThat().body("name", hasItem("Пневмоподвеска"));
-        System.out.println("Test finished");
+        log.error("Test #10 finished");
     }
 
 }
