@@ -78,10 +78,10 @@ public class MainPageRia extends DriverInit {
         return this;
     }
 
-    public ResPageRia clickSubmitButton() {
+    public MainPageRia clickSubmitButton() {
         log.error("clickSubmitButton");
         getWait().until(ExpectedConditions.visibilityOfElementLocated(submitButtonSearchBlock)).click();
-        return new ResPageRia();
+        return this;
     }
 
     public MainPageRia clickExtendedSearch() {
