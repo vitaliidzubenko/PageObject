@@ -5,10 +5,9 @@ import TestOptions.TestAnnotation;
 import TestOptions.TestParameters;
 import io.qameta.allure.Description;
 import org.testng.Assert;
-import org.testng.IHookable;
 import org.testng.annotations.Test;
 
-public class TestClassForRia extends TestAnnotation implements IHookable {
+public class TestClassForRia extends TestAnnotation {
     private MainPageRia mainPage = new MainPageRia();
     private ExtendSearchPageRia extSearch = new ExtendSearchPageRia();
 
