@@ -16,29 +16,28 @@ public class CTOpage extends DriverInit {
     private final By showPhone = By.xpath("//div[@class = 'item-result-services']//a[text() = 'показать']");
     private final By phoneShown = By.xpath("//div[@class = 'item-result-services']//span[@class = 'bold green pointer']");
 
+    public By getPhoneShown() {
+        return phoneShown;
+    }
+
     public CTOpage chooseCity() {
-        log.error("chooseCity");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(cityList)).click();
-        getDriver().findElement(cityVin).click();
-        getDriver().findElement(searchButton).click();
+        log.info("chooseCity");
+        twoLocClick(cityList, cityVin);
+        log.info("Submit");
+        oneLocClick(searchButton);
         return this;
     }
 
     public CTOpage chooseOfficial() {
-        log.error("chooseOfficial");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(officialTick)).click();
-        getDriver().findElement(searchCTO).click();
+        log.info("chooseOfficial");
+        twoLocClick(officialTick, searchCTO);
         return this;
     }
 
     public CTOpage showHiddenPhone() {
-        log.error("showHiddenPhone");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(showPhone)).click();
+        log.info("showHiddenPhone");
+        oneLocClick(showPhone);
         getWait().until(ExpectedConditions.visibilityOfElementLocated(phoneShown));
         return this;
-    }
-
-    public By getPhoneShown() {
-        return phoneShown;
     }
 }

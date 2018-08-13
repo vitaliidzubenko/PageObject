@@ -39,77 +39,105 @@ public class MainPageRia extends DriverInit {
     private final By typeTruck = By.xpath("//section[@class = 'box-panel line']//span[text() = 'Грузовики']");
     private final By truckTypeTank = By.xpath("//nav[@class = 'catalog-referrals open-mobile']//a[text() = 'Цистерна']");
 
-
     public MainPageRia clickCabinet() {
-        log.error("clickCabinet");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(enterCabinet));
-        getDriver().findElement(enterCabinet).click();
+        log.info("clickCabinet");
+        oneLocClick(enterCabinet);
         return this;
     }
 
     public MainPageRia fillBrand() {
-        log.error("fillBrand");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(brandSearchBlock)).click();
-        getDriver().findElement(skodaList).click();
+        log.info("fillBrand");
+        twoLocClick(brandSearchBlock, skodaList);
         return this;
     }
 
     public MainPageRia fillModel() {
-        log.error("fillModel");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(modelSearchBlock)).click();
-        getDriver().findElement(modelList).click();
+        log.info("fillModel");
+        twoLocClick(modelSearchBlock, modelList);
         return this;
     }
 
     public MainPageRia fillRegion() {
-        log.error("fillRegion");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(regionSearchBlock)).click();
-        getDriver().findElement(regionList).click();
+        log.info("fillRegion");
+        twoLocClick(regionSearchBlock, regionList);
         return this;
     }
 
     public MainPageRia fillYear() {
-        log.error("fillYear");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(yearFromSearchBlock)).click();
-        getDriver().findElement(yearFromList).click();
-
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(yearToSearchBlock)).click();
-        getDriver().findElement(yearToList).click();
+        log.info("fillYear");
+        twoLocClick(yearFromSearchBlock, yearFromList);
+        twoLocClick(yearToSearchBlock, yearToList);
         return this;
     }
 
-    public ResPageRia clickSubmitButton() {
-        log.error("clickSubmitButton");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(submitButtonSearchBlock)).click();
-        return new ResPageRia();
+    public MainPageRia clickSubmitButton() {
+        log.info("clickSubmitButton");
+        oneLocClick(submitButtonSearchBlock);
+        return this;
     }
 
     public MainPageRia clickExtendedSearch() {
-        log.error("clickExtendedSearch");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(extendedSearchButton)).click();
+        log.info("clickExtendedSearch");
+        oneLocClick(extendedSearchButton);
         return this;
     }
 
     public MainPageRia clickNewCarsHeader() {
-        log.error("clickNewCarsHeader");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(newCarsHeader)).click();
+        log.info("clickNewCarsHeader");
+        oneLocClick(newCarsHeader);
         return this;
     }
 
     public MainPageRia clickSpecialVehicle() {
-        log.error("clickSpecialVehicle");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(specialVehicleHome)).click();
+        log.info("clickSpecialVehicle");
+        oneLocClick(specialVehicleHome);
         return this;
     }
 
     public MainPageRia clickBuldozer() {
-        log.error("clickBuldozer");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(buldozerIconHome)).click();
+        log.info("clickBuldozer");
+        oneLocClick(buldozerIconHome);
+        return this;
+    }
+
+    public MainPageRia clickRiaCom() {
+        log.info("clickRiaCom");
+        oneLocClick(headerLinkRiaCom);
+        return this;
+    }
+
+    public MainPageRia clickRealty() {
+        log.info("clickRealty");
+        oneLocClick(headerLinkRealty);
+        return this;
+    }
+
+    public MainPageRia clickCarGoods() {
+        log.info("clickCarGoods");
+        oneLocClick(headerLinkCarGoods);
+        return this;
+    }
+
+    public MainPageRia clickAutoParts() {
+        log.info("clickAutoParts");
+        oneLocClick(headerLinkAutoParts);
+        return this;
+    }
+
+    public MainPageRia clickAbroadCar() {
+        log.info("clickAbroadCar");
+        oneLocClick(abroadCar);
+        return this;
+    }
+
+    public MainPageRia clickTruck() {
+        log.info("clickTruck");
+        twoLocClick(typeTruck, truckTypeTank);
         return this;
     }
 
     public MainPageRia hoverClickCars() {
-        log.error("hoverClickCars");
+        log.info("hoverClickCars");
         Actions action = new Actions(getDriver());
         getWait().until(ExpectedConditions.visibilityOfElementLocated(allForAuto));
         action.moveToElement(getDriver().findElement(allForAuto)).build().perform();
@@ -118,15 +146,15 @@ public class MainPageRia extends DriverInit {
     }
 
     public MainPageRia clickQuestionsFooter() {
-        log.error("clickQuestionsFooter");
+        log.info("clickQuestionsFooter");
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         js.executeScript("window.scrollBy(0,4000)");
         getWait().until(ExpectedConditions.visibilityOfElementLocated(questionsFooter)).click();
         return this;
     }
 
-    public MainPageRia swithcToNewWindow() {
-        log.error("swithcToNewWindow");
+    public MainPageRia switchToNewWindow() {
+        log.info("switchToNewWindow");
         String parentWindow = getDriver().getWindowHandle();
         Set<String> handles = getDriver().getWindowHandles();
         for (String windowHandle : handles) {
@@ -134,43 +162,6 @@ public class MainPageRia extends DriverInit {
                 getDriver().switchTo().window(windowHandle);
             }
         }
-        return this;
-    }
-
-    public MainPageRia clickRiaCom() {
-        log.error("clickRiaCom");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(headerLinkRiaCom)).click();
-        return this;
-    }
-
-    public MainPageRia clickRealty() {
-        log.error("clickRealty");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(headerLinkRealty)).click();
-        return this;
-    }
-
-    public MainPageRia clickCarGoods() {
-        log.error("clickCarGoods");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(headerLinkCarGoods)).click();
-        return this;
-    }
-
-    public MainPageRia clickAutoParts() {
-        log.error("clickAutoParts");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(headerLinkAutoParts)).click();
-        return this;
-    }
-
-    public MainPageRia clickAbroadCar() {
-        log.error("clickAbroadCar");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(abroadCar)).click();
-        return this;
-    }
-
-    public MainPageRia clickTruck() {
-        log.error("clickTruck");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(typeTruck)).click();
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(truckTypeTank)).click();
         return this;
     }
 }

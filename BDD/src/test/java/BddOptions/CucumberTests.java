@@ -11,7 +11,6 @@ public class CucumberTests extends DriverInit {
     private MainPageRia mainPageRia = new MainPageRia();
 
     //First Test
-
     @Given("^Get the Home Page$")
     public void get_the_Home_Page() {
         getDriver().get(getMainUrl());
@@ -224,7 +223,7 @@ public class CucumberTests extends DriverInit {
     public void scroll_down_the_page_to_the_end() {
         mainPageRia
                 .clickQuestionsFooter()
-                .swithcToNewWindow();
+                .switchToNewWindow();
     }
 
     @And("^Enter How to register at input search field and submit it$")
@@ -361,6 +360,5 @@ public class CucumberTests extends DriverInit {
         ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
         Assert.assertFalse((getDriver().findElement(extendSearchPageRia.getEmptyResultsBlock()).isDisplayed()), "***Verification Failed!***");
     }
-
 
 }

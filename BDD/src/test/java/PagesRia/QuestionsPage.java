@@ -13,26 +13,26 @@ public class QuestionsPage extends DriverInit {
     private final By searchLink = By.xpath("//a[contains (text(), 'Как зарегистрироваться')]");
     private final By answerContent = By.xpath("//div[@class = 'answer-list']");
 
-    public QuestionsPage enterQuestion() {
-        log.error("enterQuestion");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(inputBlock)).sendKeys("Как зарегистрироваться");
-        getDriver().findElement(searchButton).click();
-        return this;
+    public By getAnswerContent() {
+        return answerContent;
     }
 
     public QuestionsPage clickLink() {
-        log.error("clickLink");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(searchLink)).click();
+        log.info("clickLink");
+        oneLocClick(searchLink);
         return this;
     }
 
     public QuestionsPage viewLink() {
-        log.error("viewLink");
+        log.info("viewLink");
         getWait().until(ExpectedConditions.visibilityOfElementLocated(answerContent));
         return this;
     }
 
-    public By getAnswerContent() {
-        return answerContent;
+    public QuestionsPage enterQuestion() {
+        log.info("enterQuestion");
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(inputBlock)).sendKeys("Как зарегистрироваться");
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(searchButton)).click();
+        return this;
     }
 }

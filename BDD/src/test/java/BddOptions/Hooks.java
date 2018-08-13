@@ -9,7 +9,6 @@ import org.openqa.selenium.Dimension;
 import java.util.concurrent.TimeUnit;
 
 public class Hooks extends DriverInit {
-
     private static Logger log = LogManager.getLogger(Hooks.class);
 
     @Before
@@ -20,13 +19,13 @@ public class Hooks extends DriverInit {
         System.out.println("==================================================================================");
         System.out.println("******************************====START_OF_TEST====*******************************");
         System.out.println("==================================================================================");
-        log.error("Start of Test/ Opening Browser");
+        log.info("Start of Test/ Opening Browser");
     }
 
     @After
     public void closeTest() {
         getDriver().manage().deleteAllCookies();
-        log.error("Finish of Test/ Closing Browser");
+        log.info("Finish of Test/ Closing Browser");
         System.out.println("==================================================================================");
         System.out.println("******************************====FINISH_OF_TEST===*******************************");
         System.out.println("==================================================================================");
@@ -41,6 +40,4 @@ public class Hooks extends DriverInit {
             getDriver().close();
         }
     }
-
-
 }

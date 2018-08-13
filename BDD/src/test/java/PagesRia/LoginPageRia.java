@@ -18,21 +18,31 @@ public class LoginPageRia extends DriverInit {
     private final By nextButtonPopUp = By.xpath("//div[@id= 'passwordNext']");
     private final By afterLoginField = By.xpath("//div[@class = 'position-login-block']");
 
+    public By getAfterLoginField() {
+        return afterLoginField;
+    }
+
+    public LoginPageRia clickEnterGoogle() {
+        log.info("clickEnterGoogle");
+        oneLocClick(enterWithGoogle);
+        return this;
+    }
+
+    public LoginPageRia checkForEnabledGoogle() {
+        log.info("checkForEnabledGoogle");
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(afterLoginField));
+        return this;
+    }
+
     public LoginPageRia clickRegister() {
-        log.error("clickRegister");
+        log.info("clickRegister");
         getDriver().switchTo().frame("login_frame");
         getWait().until(ExpectedConditions.visibilityOfElementLocated(register)).click();
         return this;
     }
 
-    public LoginPageRia clickEnterGoogle() {
-        log.error("clickEnterGoogle");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(enterWithGoogle)).click();
-        return this;
-    }
-
     public LoginPageRia fillPopUpGoogle(String email, String password) {
-        log.error("fillPopUpGoogle");
+        log.info("fillPopUpGoogle");
         String parentWindow = getDriver().getWindowHandle();
         Set<String> handles = getDriver().getWindowHandles();
         for (String windowHandle : handles) {
@@ -51,15 +61,5 @@ public class LoginPageRia extends DriverInit {
             }
         }
         return this;
-    }
-
-    public LoginPageRia checkForEnabledGoogle() {
-        log.error("checkForEnabledGoogle");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(afterLoginField));
-        return this;
-    }
-
-    public By getAfterLoginField() {
-        return afterLoginField;
     }
 }

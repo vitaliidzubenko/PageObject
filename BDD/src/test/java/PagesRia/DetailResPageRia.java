@@ -20,65 +20,66 @@ public class DetailResPageRia extends DriverInit {
     private final By x5mModel = By.xpath("//select[@name = 'model_id']//option[@value = '149']");
     private final By filteredCar = By.xpath("//div[@class = 'ticket-item paid']//a[@title = 'Подробно']");
 
-    public DetailResPageRia detailedInfoElement() {
-        log.error("detailedInfoElement");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(contentDisplayed));
-        return this;
-    }
-
-    public DetailResPageRia detailsBuldozer() {
-        log.error("detailsBuldozer");
-        getWait().until(ExpectedConditions.elementToBeClickable(firstResultBuldozer)).click();
-        getWait().until(ExpectedConditions.elementToBeClickable(contentDisplayed));
-        return this;
-    }
-
-    public DetailResPageRia proposeChevy() {
-        log.error("proposeChevrolet");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(proposeContent));
-        return this;
-    }
-
-    public DetailResPageRia clickLithuania() {
-        log.error("clickLithuania");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(abroadLithuania)).click();
-        return this;
-    }
-
-    public DetailResPageRia clickVehicleType() {
-        log.error("clickVehicleType");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(vehicleType)).click();
-        getDriver().findElement(passengerType).click();
-        return this;
-    }
-
-    public DetailResPageRia clickBrandType() {
-        log.error("clickBrandType");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(brandOfCar)).click();
-        getDriver().findElement(brandBMW).click();
-        return this;
-    }
-
-    public DetailResPageRia clickModelOfCar() throws InterruptedException {
-        log.error("clickModelOfCar");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(modelOfCar)).click();
-        getDriver().findElement(x5mModel).click();
-        Thread.sleep(3500);
-        return this;
-    }
-
-    public DetailResPageRia clickFilteredCar() {
-        log.error("waiting for refreshed results");
-        log.error("clickFilteredCar");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(filteredCar)).click();
-        return this;
-    }
-
     public By getContentDisplayed() {
         return contentDisplayed;
     }
 
     public By getProposeContent() {
         return proposeContent;
+    }
+
+    public DetailResPageRia detailedInfoElement() {
+        log.info("detailedInfoElement");
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(contentDisplayed));
+        return this;
+    }
+
+    public DetailResPageRia detailsBuldozer() {
+        log.info("detailsBuldozer");
+        getWait().until(ExpectedConditions.elementToBeClickable(firstResultBuldozer)).click();
+        getWait().until(ExpectedConditions.elementToBeClickable(contentDisplayed));
+        return this;
+    }
+
+    public DetailResPageRia proposeChevy() {
+        log.info("proposeChevrolet");
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(proposeContent));
+        return this;
+    }
+
+    public DetailResPageRia clickLithuania() {
+        log.info("clickLithuania");
+        oneLocClick(abroadLithuania);
+        return this;
+    }
+
+    public DetailResPageRia clickVehicleType() {
+        log.info("clickVehicleType");
+        oneLocClick(vehicleType);
+        getDriver().findElement(passengerType).click();
+
+        return this;
+    }
+
+    public DetailResPageRia clickBrandType() {
+        log.info("clickBrandType");
+        oneLocClick(brandOfCar);
+        getDriver().findElement(brandBMW).click();
+        return this;
+    }
+
+    public DetailResPageRia clickModelOfCar() throws InterruptedException {
+        log.info("clickModelOfCar");
+        oneLocClick(modelOfCar);
+        getDriver().findElement(x5mModel).click();
+        Thread.sleep(4000);
+        log.info("Waiting for refreshed results");
+        return this;
+    }
+
+    public DetailResPageRia clickFilteredCar() {
+        log.info("clickFilteredCar");
+        oneLocClick(filteredCar);
+        return this;
     }
 }

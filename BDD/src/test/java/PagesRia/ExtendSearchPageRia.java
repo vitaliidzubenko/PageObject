@@ -32,103 +32,100 @@ public class ExtendSearchPageRia extends DriverInit {
     private final By yearTo2018 = By.xpath("//select[@name = 'po_yers[0]']//option[2]");
     private final By emptyResultsBlock = By.xpath("//div[@id = 'emptyResultsBlock']");
 
+    public By getEmptyResultsBlock() {
+        return emptyResultsBlock;
+    }
+
     public ExtendSearchPageRia fillBodyType() {
-        log.error("fillBodyType");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(bodyTypeExtendedSearch)).click();
+        log.info("fillBodyType");
+        oneLocClick(bodyTypeExtendedSearch);
         return this;
     }
 
     public ExtendSearchPageRia fillBrand() {
-        log.error("fillBrand");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(enterBrandExtendedSearch)).click();
-        return this;
-    }
-
-    public ExtendSearchPageRia fillYear(String yearF, String yearT) {
-        log.error("fillYear");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(yearFromExtendedSearch)).sendKeys(yearF);
-
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(yearToExtendedSearch));
-        getDriver().findElement(yearToExtendedSearch).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        getDriver().findElement(yearToExtendedSearch).sendKeys(yearT);
+        log.info("fillBrand");
+        oneLocClick(enterBrandExtendedSearch);
         return this;
     }
 
     public ExtendSearchPageRia fillregion() {
-        log.error("fillregion");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(regionExtendedSearch)).click();
+        log.info("fillregion");
+        oneLocClick(regionExtendedSearch);
         return this;
     }
 
     public ExtendSearchPageRia fillFuelType() {
-        log.error("fillFuelType");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(fuelTypeExtendedSearch)).click();
+        log.info("fillFuelType");
+        oneLocClick(fuelTypeExtendedSearch);
         return this;
     }
 
     public ExtendSearchPageRia clickShowResultsButton() {
-        log.error("clickShowResultsButton");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(showResultsExtendedSearch)).click();
+        log.info("clickShowResultsButton");
+        oneLocClick(showResultsExtendedSearch);
         return this;
     }
 
     public ExtendSearchPageRia clickChevrolet() {
-        log.error("clickChevrolet");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(chevroletIcon)).click();
+        log.info("clickChevrolet");
+        oneLocClick(chevroletIcon);
         return this;
     }
 
     public ExtendSearchPageRia clickSuburban() {
-        log.error("clickSuburban");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(suburbanModel)).click();
+        log.info("clickSuburban");
+        oneLocClick(suburbanModel);
         return this;
     }
 
     public ExtendSearchPageRia firstGenModel() {
-        log.error("firstGenModel");
-        getWait().until(ExpectedConditions.elementToBeClickable(firstImageSuburban)).click();
+        log.info("firstGenModel");
+        oneLocClick(firstImageSuburban);
         return this;
     }
 
     public ExtendSearchPageRia offersForModel() {
-        log.error("offersForModel");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(offersForElement)).click();
+        log.info("offersForModel");
+        oneLocClick(offersForElement);
+        return this;
+    }
+
+    public ExtendSearchPageRia fillBrandTruck() {
+        log.info("fillBrandTruck");
+        twoLocClick(brandtruck, truckMAN);
         return this;
     }
 
     public ExtendSearchPageRia modelInfo() {
-        log.error("modelInfo");
+        log.info("modelInfo");
         getWait().until(ExpectedConditions.visibilityOfElementLocated(allPageContent));
         return this;
     }
 
     public ExtendSearchPageRia priceBuldozer(String priceF, String priceT) {
-        log.error("priceBuldozer");
+        log.info("priceBuldozer");
         getDriver().findElement(priceFrom).sendKeys(priceF);
         getDriver().findElement(priceTo).sendKeys(priceT);
-        getDriver().findElement(searchButton).click();
-        return this;
-    }
-
-    public ExtendSearchPageRia fillBrandTruck() {
-        log.error("fillBrandTruck");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(brandtruck)).click();
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(truckMAN)).click();
+        log.info("SubmitButton");
+        oneLocClick(searchButton);
         return this;
     }
 
     public ExtendSearchPageRia fillYearstruck() {
-        log.error("fillYearstruck");
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(yearFrom)).click();
-        getDriver().findElement(yearFrom2010).click();
-
-        getWait().until(ExpectedConditions.visibilityOfElementLocated(yearTo)).click();
-        getDriver().findElement(yearTo2018).click();
-        getDriver().findElement(searchButton).click();
+        log.info("fillYearsTruck");
+        twoLocClick(yearFrom, yearFrom2010);
+        twoLocClick(yearTo, yearTo2018);
+        log.info("SubmitButton");
+        oneLocClick(searchButton);
         return this;
     }
 
-    public By getEmptyResultsBlock() {
-        return emptyResultsBlock;
+    public ExtendSearchPageRia fillYear(String yearF, String yearT) {
+        log.info("fillYear");
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(yearFromExtendedSearch)).sendKeys(yearF);
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(yearToExtendedSearch));
+        getDriver().findElement(yearToExtendedSearch).sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        getDriver().findElement(yearToExtendedSearch).sendKeys(yearT);
+        return this;
     }
 }
