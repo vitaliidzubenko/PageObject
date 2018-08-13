@@ -5,6 +5,7 @@ import cucumber.api.java.Before;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
+import org.testng.annotations.AfterSuite;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,7 +15,7 @@ public class Hooks extends DriverInit {
     @Before
     public void setUp() {
         getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        getDriver().manage().window().setSize(new Dimension(1366,768));
+        getDriver().manage().window().fullscreen();
         getDriver().manage().deleteAllCookies();
         System.out.println("==================================================================================");
         System.out.println("******************************====START_OF_TEST====*******************************");
@@ -31,13 +32,4 @@ public class Hooks extends DriverInit {
         System.out.println("==================================================================================");
     }
 
-    public void end() {
-        getDriver().quit();
-    }
-
-    public  void closeDriver() {
-        if (getDriver() != null) {
-            getDriver().close();
-        }
-    }
 }

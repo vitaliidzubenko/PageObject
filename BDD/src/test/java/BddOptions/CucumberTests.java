@@ -316,7 +316,7 @@ public class CucumberTests extends DriverInit {
     }
 
     @And("^At the left filters panel enter parameters and submit it$")
-    public void at_the_left_filters_panel_enter_parameters() throws InterruptedException {
+    public void at_the_left_filters_panel_enter_parameters() {
         DetailResPageRia detailResPageRia = new DetailResPageRia();
         detailResPageRia.clickVehicleType()
                 .clickVehicleType()

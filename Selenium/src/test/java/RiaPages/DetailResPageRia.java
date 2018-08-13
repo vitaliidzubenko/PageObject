@@ -36,8 +36,21 @@ public class DetailResPageRia extends DriverInit {
 
     public DetailResPageRia detailsBuldozer() {
         log.info("detailsBuldozer");
-        getWait().until(ExpectedConditions.elementToBeClickable(firstResultBuldozer)).click();
-        getWait().until(ExpectedConditions.elementToBeClickable(contentDisplayed));
+        //Fixing trouble with stale element exception
+        boolean breakIt;
+        while (breakIt = true) {
+            try {
+                getWait().until(ExpectedConditions.elementToBeClickable(firstResultBuldozer)).click();
+                getWait().until(ExpectedConditions.elementToBeClickable(contentDisplayed));
+            } catch (Exception e) {
+                if (e.getMessage().contains("element is not attached")) {
+                    breakIt = false;
+                }
+            }
+            if (breakIt) {
+                break;
+            }
+        }
         return this;
     }
 
@@ -68,12 +81,25 @@ public class DetailResPageRia extends DriverInit {
         return this;
     }
 
-    public DetailResPageRia clickModelOfCar() throws InterruptedException {
+    public DetailResPageRia clickModelOfCar() {
         log.info("clickModelOfCar");
-        oneLocClick(modelOfCar);
-        getDriver().findElement(x5mModel).click();
-        Thread.sleep(4000);
-        log.info("Waiting for refreshed results");
+        //Fixing trouble with stale element exception
+        boolean breakIt;
+        while (breakIt = true) {
+            try {
+                oneLocClick(modelOfCar);
+                getDriver().findElement(x5mModel).click();
+                Thread.sleep(4000);
+                log.info("Waiting for refreshed results");
+            } catch (Exception e) {
+                if (e.getMessage().contains("element is not attached")) {
+                    breakIt = false;
+                }
+            }
+            if (breakIt) {
+                break;
+            }
+        }
         return this;
     }
 
