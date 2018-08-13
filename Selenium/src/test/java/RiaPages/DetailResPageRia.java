@@ -36,7 +36,7 @@ public class DetailResPageRia extends DriverInit {
 
     public DetailResPageRia detailsBuldozer() {
         log.info("detailsBuldozer");
-        oneLocClick(firstResultBuldozer);
+        getWait().until(ExpectedConditions.elementToBeClickable(firstResultBuldozer)).click();
         getWait().until(ExpectedConditions.elementToBeClickable(contentDisplayed));
         return this;
     }
@@ -55,19 +55,23 @@ public class DetailResPageRia extends DriverInit {
 
     public DetailResPageRia clickVehicleType() {
         log.info("clickVehicleType");
-        twoLocClick(vehicleType, passengerType);
+        oneLocClick(vehicleType);
+        getDriver().findElement(passengerType).click();
+
         return this;
     }
 
     public DetailResPageRia clickBrandType() {
         log.info("clickBrandType");
-        twoLocClick(brandOfCar, brandBMW);
+        oneLocClick(brandOfCar);
+        getDriver().findElement(brandBMW).click();
         return this;
     }
 
     public DetailResPageRia clickModelOfCar() throws InterruptedException {
         log.info("clickModelOfCar");
-        twoLocClick(modelOfCar, x5mModel);
+        oneLocClick(modelOfCar);
+        getDriver().findElement(x5mModel).click();
         Thread.sleep(4000);
         log.info("Waiting for refreshed results");
         return this;
