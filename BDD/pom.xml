@@ -49,6 +49,7 @@
                 <version>2.22.0</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
         </plugins>
