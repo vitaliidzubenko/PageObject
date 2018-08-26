@@ -1,4 +1,5 @@
 Feature: : Testing UI AutoRia
+
   Background:
     Given Get the Home Page
 
@@ -25,10 +26,10 @@ Feature: : Testing UI AutoRia
     And Click at First result on page
     Then Verify result for Third Test
     Examples:
-      | yearF  | yearT  |
-      | "2003" | "2006" |
-      | "2008" | "2012" |
-      | "2012" | "2016" |
+      | yearF | yearT |
+      | 2003  | 2006  |
+      | 2008  | 2012  |
+      | 2012  | 2016  |
 
   @Run
   Scenario: №4 New car Search
@@ -48,10 +49,10 @@ Feature: : Testing UI AutoRia
     And Click at the first element at the list
     Then Verify result for Fifth Test
     Examples:
-      | priceF  | priceT  |
-      | "35000" | "70000" |
-      | "50000" | "80000" |
-      | "60000" | "90000" |
+      | priceF | priceT |
+      | 10000  | 20000  |
+      | 30000  | 50000  |
+      | 70000  | 90000  |
 
   @Run
   Scenario: №6 Searching Service station from Home Page header’s menu

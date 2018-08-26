@@ -18,7 +18,8 @@ public class CucumberTests extends DriverInit {
 
     @When("^Click Enter cabinet$")
     public void click_Enter_cabinet() {
-        mainPageRia.clickCabinet();
+        mainPageRia.clickCabinet()
+                .closeNotification();
     }
 
     @And("^Click Register$")
@@ -53,7 +54,8 @@ public class CucumberTests extends DriverInit {
         mainPageRia.fillBrand()
                 .fillModel()
                 .fillRegion()
-                .fillYear();
+                .fillYear()
+                .closeNotification();
     }
 
     @And("^Click Search button second test$")
@@ -78,19 +80,18 @@ public class CucumberTests extends DriverInit {
 
     @When("^Click Advanced Search button at Search Field$")
     public void click_Advanced_Search_button_at_Search_Field() {
-        mainPageRia.clickExtendedSearch();
+        mainPageRia.clickExtendedSearch()
+                .closeNotification();
     }
 
     @And("^At Advanced Search Form enter '(.*?)' and '(.*?)' of vehicle$")
     public void at_Advanced_Search_Form_enter_detailed_parameters(String yearF, String yearT) {
         ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
         extendSearchPageRia.fillBodyType()
-                .fillBrand();
-
-        extendSearchPageRia.fillYear(yearF, yearT);
-        extendSearchPageRia.fillregion()
+                .fillBrand()
+                .fillYear(yearF, yearT)
+                .fillregion()
                 .fillFuelType();
-
     }
 
     @And("^Click Search button third test$")
@@ -116,7 +117,8 @@ public class CucumberTests extends DriverInit {
 
     @When("^Click at header’s link New cars$")
     public void click_at_header_s_link_New_cars() {
-        mainPageRia.clickNewCarsHeader();
+        mainPageRia.clickNewCarsHeader()
+                .closeNotification();
     }
 
     @And("^Choose Chevrolet brand at Catalog of new cars$")
@@ -148,7 +150,7 @@ public class CucumberTests extends DriverInit {
     public void click_Search_btt() {
         DetailResPageRia detailResPageRia = new DetailResPageRia();
         detailResPageRia.proposeChevy();
-        Assert.assertTrue((getDriver().findElement(detailResPageRia.getProposeContent()).isDisplayed()), "***Verification Failed!***");
+        Assert.assertTrue((getDriver().findElement(detailResPageRia.getPropose()).isDisplayed()), "***Verification Failed!***");
     }
 
     //Fifth Test
@@ -165,7 +167,8 @@ public class CucumberTests extends DriverInit {
 
     @And("^Choose Bulldozer at drop down list$")
     public void choose_Bulldozer_at_drop_down_list() {
-        mainPageRia.clickBuldozer();
+        mainPageRia.clickBuldozer()
+                .closeNotification();
     }
 
     @And("^Enter parameters of price from '(.*)' and price to '(.*)' and submit it$")
@@ -190,7 +193,8 @@ public class CucumberTests extends DriverInit {
 
     @When("^Hover and click the link All for cars$")
     public void hover_the_link_All_for_cars() {
-        mainPageRia.hoverClickCars();
+        mainPageRia.hoverClickCars()
+                .closeNotification();
     }
 
     @And("^Enter parameter at search field and submit it$")
@@ -223,7 +227,8 @@ public class CucumberTests extends DriverInit {
     public void scroll_down_the_page_to_the_end() {
         mainPageRia
                 .clickQuestionsFooter()
-                .switchToNewWindow();
+                .switchToNewWindow()
+                .closeNotification();
     }
 
     @And("^Enter How to register at input search field and submit it$")
@@ -302,11 +307,12 @@ public class CucumberTests extends DriverInit {
         Assert.assertTrue((getDriver().findElement(otherRiaSites.getContentHeaderLinks()).isDisplayed()), "***Verification Failed!***");
     }
 
-    //Nineth test
+    //Ninth test
 
     @When("^Scroll down to click the Car from abroad$")
     public void scroll_down_to_see_the_Auto_ria_recommends_you() {
-        mainPageRia.clickAbroadCar();
+        mainPageRia.clickAbroadCar()
+                .closeNotification();
     }
 
     @And("^Scroll down to Click at link Cars from Lithuania$")
@@ -340,7 +346,8 @@ public class CucumberTests extends DriverInit {
 
     @When("^Click at Tractor car at types of vehicle block$")
     public void click_at_Tractor_car_at_types_of_vehicle_block() {
-        mainPageRia.clickTruck();
+        mainPageRia.clickTruck()
+                .closeNotification();
     }
 
     @And("^Choose a Tank type from drop down list$")

@@ -13,7 +13,7 @@ public class Hooks extends DriverInit {
     @Before
     public void setUp() {
         getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        getDriver().manage().window().fullscreen();
+        getDriver().manage().window().maximize();
         getDriver().manage().deleteAllCookies();
         System.out.println("==================================================================================");
         System.out.println("******************************====START_OF_TEST====*******************************");
