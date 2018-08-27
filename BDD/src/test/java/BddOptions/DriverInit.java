@@ -57,4 +57,10 @@ public abstract class DriverInit {
         getWait().until(ExpectedConditions.visibilityOfElementLocated(Loc_2)).click();
     }
 
+    public static void closeBrowser() {
+        if (driver != null ) {
+            driver.quit();
+        }
+        driver = null;
+    }
 }
