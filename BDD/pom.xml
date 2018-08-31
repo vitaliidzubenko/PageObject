@@ -51,7 +51,7 @@
                     <testFailureIgnore>true</testFailureIgnore>
                     <encoding>UTF-8</encoding>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                        <File>src/test/resources/testng.xml</File>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
@@ -81,11 +81,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.25</version>
@@ -100,7 +95,6 @@
             <artifactId>log4j-api</artifactId>
             <version>2.11.0</version>
         </dependency>
-
         <!--<Cucumber BDD>-->
         <dependency>
             <groupId>info.cukes</groupId>
@@ -114,12 +108,6 @@
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <version>1.2.5</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>info.cukes</groupId>
             <artifactId>cucumber-jvm-deps</artifactId>
             <version>1.0.5</version>
             <scope>provided</scope>
@@ -130,14 +118,16 @@
             <version>3.18.0</version>
         </dependency>
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.10.19</version>
-        </dependency>
-        <dependency>
             <groupId>info.cukes</groupId>
-            <artifactId>gherkin</artifactId>
-            <version>2.12.2</version>
+            <artifactId>cucumber-testng</artifactId>
+            <version>1.2.5</version>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!--<Cucumber BDD End>-->
     </dependencies>

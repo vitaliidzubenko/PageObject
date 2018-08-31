@@ -58,7 +58,7 @@ public abstract class DriverInit {
     }
 
     public static void closeBrowser() {
-        if (driver != null ) {
+        if (driver != null) {
             driver.quit();
         }
         driver = null;

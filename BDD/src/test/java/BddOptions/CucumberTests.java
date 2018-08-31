@@ -360,6 +360,7 @@ public class CucumberTests extends DriverInit {
     public void enter_parameters_at_Search_block() {
         ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
         extendSearchPageRia.fillYearstruck();
+        mainPageRia.closeNotification();
     }
 
     @Then("^Check for results for Tenth Test$")
@@ -367,5 +368,4 @@ public class CucumberTests extends DriverInit {
         ExtendSearchPageRia extendSearchPageRia = new ExtendSearchPageRia();
         Assert.assertFalse((getDriver().findElement(extendSearchPageRia.getEmptyResultsBlock()).isDisplayed()), "***Verification Failed!***");
     }
-
 }

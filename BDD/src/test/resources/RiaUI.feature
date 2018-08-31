@@ -82,7 +82,7 @@ Feature: : Testing UI AutoRia
     Then Check the address of URL Auto parts, Get back to Main page
     And Verify that the last website is displayed
 
-  @Run
+  @RunLast
   Scenario: №9 Searching Car from abroad
     When Scroll down to click the Car from abroad
     And Scroll down to Click at link Cars from Lithuania
@@ -90,7 +90,7 @@ Feature: : Testing UI AutoRia
     And Click at one of filtered results
     Then Verify result for Nineth Test
 
-  @Run
+  @RunLast
   Scenario: №10 Searching car with some parameters, then changing parameters for other car type
     When Click at Tractor car at types of vehicle block
     And Choose a Tank type from drop down list

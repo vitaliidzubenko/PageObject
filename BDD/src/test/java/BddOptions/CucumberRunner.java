@@ -1,15 +1,12 @@
 package BddOptions;
 
 import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
-import org.junit.runner.RunWith;
+import cucumber.api.testng.AbstractTestNGCucumberTests;
 
-@RunWith(Cucumber.class)
 @CucumberOptions(
         features = {"src/test/resources/RiaUI.feature"},
         glue = {"BddOptions"},
         format = {"json:target/cucumber/Ria.json", "html:target/cucumber/Ria.html", "pretty"},
-        tags = {"@Run"})
-public class CucumberRunner {
-
+        tags = {"@RunLast"})
+public class CucumberRunner extends AbstractTestNGCucumberTests {
 }
